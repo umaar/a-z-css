@@ -1,0 +1,3139 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>An A to Z of CSS</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-31819122-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+<section>
+	<h1>An *A-Z of CSS</h1>
+	<small>*not exactly, it's a 20 min talk after all</small>
+</section>
+
+<style>
+.slide-alphabet-title h2::first-letter {
+	font-size: 1.5em;
+}
+
+.slide-alphabet-title small::first-letter {
+	font-size: 1.3em;
+}
+</style>
+
+<section>
+	<h1>Dev Tips</h1>
+	<p>Weekly Gif showcasing a developer tip</p>
+	<p>Over 100 tips posted so far!</p>
+	<a href="https://umaar.com/dev-tips/">umaar.com/dev-tips/</a>
+</section>
+
+<section>
+	<h3>This talk</h3>
+	<ul>
+		<li>A CSS related technique for some letters of the alphabet</li>
+	</ul>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>After</h2>
+</section>
+
+<section>
+	<h2>::After</h2>
+	<ul>
+		<li>A pseudo element</li>
+		<li>Adds cosmetic content to an element</li>
+		<li>Part of the render tree, however not part of the HTML source</li>
+	</ul>
+</section>
+
+<section data-background-image="img/a-after-demo.png"></section>
+
+<section class="slide-alphabet-title">
+	<h2>All</h2>
+</section>
+
+<section>
+	<h3>All</h3>
+	<ul>
+		<li>A hard reset for all the CSS properties of an element</li>
+		<li>
+			You decide whether to reset to the initial styles, or the inherited styles</li>
+		<li>
+			Careful, resetting a third-party widget may expose &lt;style&gt; tags!
+		</li>
+	</ul>
+</section>
+
+
+<section>
+	<pre><code>
+		aside {
+			all: initial;
+		}
+	</code></pre>
+	<p>This resets <code>aside</code> to the <strong>initial</strong> styles.</p>
+	<p>What are initial styles?</p>
+</section>
+
+<section>
+	<a target="_blank" href="https://chromium.googlesource.com/chromium/blink/+/master/Source/core/css/html.css">Source/core/css/html.css</a>
+
+	<pre>
+		<code>
+/*
+ * The default style sheet used to render HTML.
+ */
+		</code>
+	</pre>
+</section>
+
+<section>
+	<pre><code>
+meta {
+    display: none
+}
+
+title {
+    display: none
+}
+
+link {
+    display: none
+}
+
+style {
+    display: none
+}
+
+script {
+    display: none
+}
+	</code></pre>
+</section>
+
+<section>
+	<img src="img/a-link-display-none.png" alt="">
+</section>
+
+<section>
+	<img src="img/a-style-display-block.png" alt="">
+</section>
+
+<section data-background-image="img/a-style-display-block-google.png"></section>
+
+<section class="slide-alphabet-title">
+	<h2>First letter</h2>
+	<small>Can you find the ::first-letter in DevTools?</small>
+</section>
+
+<section>
+	<h3>::first-letter</h3>
+	<ul>
+		<li>Pseudo Element selector to style the first letter in an element</li>
+		<li><code>::first-letter</code> will apply itself to generated content (e.g. <code>::before</code>)</li>
+		<li>Only a subset of CSS properties can be used (e.g. font based and a few others)</li>
+	</ul>
+</section>
+
+<section>
+	<h4>Before</h4>
+	<pre>
+		<code>
+<p>
+    <span class="first-letter">H</span>
+    ello
+</p>
+
+.first-letter {
+    font-size: 1em;
+}
+		</code>
+	</pre>
+
+	<h4>After</h4>
+	<pre>
+		<code>
+<p>
+    Hello
+</p>
+
+p::first-letter {
+    font-size: 1em;
+}
+		</code>
+	</pre>
+</section>
+
+<section data-background-image="img/f-first-letter-demo.png"></section>
+
+<section class="slide-alphabet-title">
+	<h2>First Line</h2>
+</section>
+
+<section class="slide-first-line-ipsum">
+	<h3>::first-line</h3>
+	<p>
+		Thanks 'Corporate Ipsum'...Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+
+		Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
+	</p>
+</section>
+
+<style>
+.slide-first-line-ipsum p {
+	resize: both;
+	overflow: scroll;
+	width: 30vw;
+	height: 40vh;
+	font-size: 0.8em;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.slide-first-line-ipsum p::first-line {
+	color: green;
+	text-decoration: underline;
+}
+
+</style>
+
+<section class="slide-alphabet-title">
+	<h2>Font Display</h2>
+</section>
+
+<section>
+	<h3>font-display</h3>
+	<ul>
+		<li>Specify how a web font (<code>@font-face</code>) should render based on load time</li>
+		<li>Use a fallback font first, but cache the webfont for next page load</li>
+		<li>Chrome only for now</li>
+	</ul>
+</section>
+
+<section>
+	<p>Three important portions of time to remember during web font loading</p>
+	<ol>
+		<li>The <strong>Font Block</strong> period</li>
+		<li>The <strong>Font Swap</strong> period</li>
+		<li>The <strong>Font Failure</strong> period</li>
+	</ol>
+</section>
+
+<section>
+	<h3>1. Font Block</h3>
+	<p>Font not loaded?</p>
+	<p>Use an <strong>invisible fallback font face</strong> while waiting.</p>
+</section>
+
+<section>
+	<h3>2. Font Swap</h3>
+	<p>Has the web font loaded? Use it!</p>
+	<p>Still not loaded? Render with a fallback instead (from <code>font-family</code>)</p>
+</section>
+
+<section>
+	<h3>3. Font Failure</h3>
+	<p>
+		Mark as failed. Use the fallback.
+	</p>
+</section>
+
+<section>
+	<p>What can we do with <code>font-display</code>?</p>
+	<ul>
+		<li><code>font-display: block;</code> ~3 second block period &amp; an infinite swap period</li>
+		<li class="fragment"><code>font-display: swap;</code> no blocking at all &amp; an infinite swap period</li>
+		<li class="fragment"><code>font-display: fallback;</code> short swap &amp; short block periods. Fallback may be used permanently</li>
+	</ul>
+</section>
+
+<section data-background-video="img/font-display-demo.mp4"></section>
+
+<section class="slide-alphabet-title">
+	<h2>Houdini</h2>
+</section>
+
+<section>
+	<h3>Houdini</h3>
+	<p>A set of brand new APIs to extend CSS itself.</p>
+</section>
+
+<section>
+	<h3>CSS Properties and Values API</h3>
+	<p>register new CSS properties along with their expected types</p>
+	<pre>
+		<code>
+CSS.registerProperty({
+	name: "--my-color",
+	syntax: "&lt;color&gt;",
+	inherits: false,
+	initialValue: "rgba(0,0,0,0)"
+});
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h3>CSS Typed OM</h3>
+	<p>CSS values as typed JavaScript objects</p>
+	<pre>
+		<code>
+
+elm.styleMap.set("z-index", new CSSNumberValue(15.4));
+//Also CSSAngleValue, CSSPositionValue, CSSImageValue etc.
+
+		</code>
+	</pre>
+</section>
+
+<section>
+	<h3>CSS Layout API</h3>
+	<p>Create new layout modes</p>
+	<pre><code>
+
+body {
+  display: layout('my-custom-layout');
+}
+
+	</code></pre>
+</section>
+
+<section>
+	<pre><code>
+&lt;script&gt;
+registerLayout('my-custom-layout', class {
+	static get inputProperties() {
+		return ['width', 'height']
+	}
+	static get childrenInputProperties() {
+		return ['x', 'y', 'position']
+	}
+	layout(children, constraintSpace, styleMap, breakToken) {
+		// Layout logic here
+	}
+}
+&lt;/script&gt;
+	</code></pre>
+</section>
+
+<section>
+	<h3>CSS Paint API</h3>
+	<p>Paint custom CSS images</p>
+	<pre><code>
+body {
+	/*
+	* This can be accessed in
+	* the JavaScript paint() method
+	*/
+	--circle-color: green;
+	background-image: paint('my-custom-circle');
+}
+	</code></pre>
+</section>
+
+
+<section>
+	<pre><code>
+registerPaint('my-custom-circle', class {
+	paint(ctx, geom, properties) {
+		const color = properties.get('--circle-color');
+		ctx.fillStyle = color;
+
+		// Determine the center point and radius.
+		const x = geom.width / 2;
+		const y = geom.height / 2;
+		const radius = Math.min(x, y);
+
+		ctx.beginPath();
+		ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+		ctx.fill();
+	}
+});
+	</code></pre>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>Image Rendering</h2>
+</section>
+
+<section>
+	<h3>Image Rendering</h3>
+	<p>Specify how an image should be scaled</p>
+</section>
+
+<section>
+	<div class="original">
+	  <h1>Original image size</h1>
+	  <img src="img/i-image-rendering-qr.png" alt="" />
+	</div>
+</section>
+
+<style>
+.slide-i-qr-auto img {
+	width: 60vw;
+	image-rendering: auto;
+}
+.slide-i-qr-pixel img {
+	width: 60vw;
+	image-rendering: pixelated;
+}
+</style>
+
+<section class="slide-i-qr-auto">
+	<div class="resize">
+	  <h2><code>image-rendering: auto</code></h2>
+	  <img src="img/i-image-rendering-qr.png" alt="" />
+	</div>
+</section>
+
+<section class="slide-i-qr-pixel">
+	<div class="resize">
+	  <h2><code>image-rendering: pixelated</code></h2>
+	  <img class="pixelated" src="img/i-image-rendering-qr.png" alt="" />
+	</div>
+</section>
+
+<section data-background-image="img/i-image-rendering-qr-comparison.png"></section>
+
+<section class="slide-alphabet-title">
+	<h2>Matches</h2>
+</section>
+
+<section>
+	<h3>:matches</h3>
+	<p>Pseudo class to group complex CSS selectors</p>
+	<ul>
+		<li>Is the equivalent of selector nesting in Sass</li>
+	</ul>
+</section>
+
+<section>
+	<code>
+		<pre>
+/* Before */
+section h1,
+article h1,
+aside h1,
+nav h1 {
+	color: green;
+}
+
+/* After */
+:matches(section, article, aside, nav) h1 {
+	color: green;
+}
+
+/* Or in Sass */
+section, article, aside, nav {
+	h1 {
+		color: red;
+	}
+}
+		</pre>
+	</code>
+</section>
+
+
+<section class="slide-alphabet-title">
+	<h2>mix-blend-mode</h2>
+</section>
+
+<section>
+	<h3>mix-blend-mode</h3>
+	<p>How element content should blend with its background</p>
+</section>
+
+<section>
+	<code>
+normal, <a href="http://codepen.io/bennettfeely/full/csjzd/" target="_blank">multiply</a>, screen, overlay, darken, lighten, color-dodge, color-burn, hard-light, soft-light, difference, exclusion, hue, saturation, color, luminosity
+	</code>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>not</h2>
+</section>
+
+<section>
+	<h3>:not</h3>
+	<p>Negates the passed in selector</p>
+	<ul>
+		<li>e.g. <code>li:not(.active) { color: white; }</code></li>
+	</ul>
+</section>
+
+<section>
+	<h4>Before</h4>
+	<pre><code>
+li {
+	border-right: 1px solid black;
+}
+
+li:last-child {
+	border-right: 0;
+}
+	</code></pre>
+</section>
+
+<section>
+	<h4>After</h4>
+	<pre><code>
+li:not(:last-child) {
+	border-right: 1px solid black;
+}
+	</code></pre>
+</section>
+
+
+<section class="slide-alphabet-title">
+	<h2>object-fit</h2>
+</section>
+
+<section>
+	<h3>object-fit</h3>
+	<p>How an elements content reacts to the width and height of its box</p>
+	<ul>
+		<li>Combine this with <code>object-position</code> for positioning</li>
+		<li>Examples include: <code>fill, contain, cover</code></li>
+	</ul>
+</section>
+
+<style>
+
+.slide-o-fit-none video {
+	object-fit: none;
+}
+
+.slide-o-fit .img-container {
+	outline: 2px solid pink;
+	width: 7	5vw;
+	height: 300px;
+	background: black;
+	padding: 10px;
+	margin: 20px auto;
+	overflow: hidden;
+}
+
+.slide-o-fit video {
+	outline: 1px solid red;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+}
+
+.slide-o-fit-fill video {
+	object-fit: fill;
+}
+
+.slide-o-fit-contain video {
+	object-fit: contain;
+}
+
+.slide-o-fit-cover video {
+	object-fit: cover;
+}
+</style>
+
+<section class="slide-o-fit slide-o-fit-none">
+	<div class="img-container">
+		<video src="img/waffle.webm" data-autoplay></video>
+	</div>
+</section>
+
+<section class="slide-o-fit slide-o-fit-fill">
+	<ul>
+		<li><strong>fill</strong> - aspect ratio is not preserved</li>
+	</ul>
+		<div class="img-container">
+			<video src="img/waffle.webm" data-autoplay></video>
+		</div>
+</section>
+
+<section class="slide-o-fit slide-o-fit-contain">
+	<ul>
+		<li><strong>contain</strong> - scaled up as much as possible, but only within the bounds. Aspect ratio is preserved</li>
+		<div class="img-container">
+			<video src="img/waffle.webm" data-autoplay></video>
+		</div>
+	</ul>
+</section>
+
+<section class="slide-o-fit slide-o-fit-cover">
+	<ul>
+		<li><strong>cover</strong> - scale up until the whole box is "covered", while preserving aspect ratio</li>
+		<div class="img-container">
+			<video src="img/waffle.webm" data-autoplay></video>
+		</div>
+	</ul>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>root</h2>
+</section>
+
+<section>
+	<h3>:root</h3>
+	<p>Target the highest level element in the DOM</p>
+	<ul>
+		<li>Will typically be the <code>html</code> element</li>
+		<li>Useful for defining CSS custom properties here</li>
+	</ul>
+</section>
+
+<section>
+	<p>All descendants of the root now have access to <code>--main-color</code>, and they can customise it if they wish.</p>
+	<pre><code>
+:root {
+    --main-color: #CCC;
+}
+	</code></pre>
+</section>
+
+<style>
+.slide-selection h2::selection,
+.slide-selection h3::selection,
+.slide-selection li::selection  {
+	background: pink;
+}
+</style>
+
+<section class="slide-alphabet-title slide-selection">
+	<h2>selection</h2>
+</section>
+
+<section class="slide-selection">
+	<h3>::selection</h3>
+	<p>Target a portion of the page which is highlighted</p>
+	<ul>
+		<li>Only works with a few CSS properties such as <code>color, background-color, text-shadow</code></li>
+	</ul>
+</section>
+
+<section>
+	<pre>
+		<code>
+li:nth-child(1)::selection {
+  background-color: #ff0400;
+}
+
+li:nth-child(2)::selection {
+  background-color: #ff0900;
+}
+
+li:nth-child(3)::selection {
+  background-color: #ff0d00;
+}
+
+li:nth-child(4)::selection {
+  background-color: #ff1100;
+}
+
+li:nth-child(5)::selection {
+  background-color: #ff1500;
+}
+
+li:nth-child(6)::selection {
+  background-color: #ff1a00;
+}
+
+li:nth-child(7)::selection {
+  background-color: #ff1e00;
+}
+
+li:nth-child(8)::selection {
+  background-color: #ff2200;
+}
+
+li:nth-child(9)::selection {
+  background-color: #ff2600;
+}
+
+li:nth-child(10)::selection {
+  background-color: #ff2b00;
+}
+
+li:nth-child(11)::selection {
+  background-color: #ff2f00;
+}
+
+li:nth-child(12)::selection {
+  background-color: #ff3300;
+}
+
+li:nth-child(13)::selection {
+  background-color: #ff3700;
+}
+
+li:nth-child(14)::selection {
+  background-color: #ff3c00;
+}
+
+li:nth-child(15)::selection {
+  background-color: #ff4000;
+}
+
+li:nth-child(16)::selection {
+  background-color: #ff4400;
+}
+
+li:nth-child(17)::selection {
+  background-color: #ff4800;
+}
+
+li:nth-child(18)::selection {
+  background-color: #ff4d00;
+}
+
+li:nth-child(19)::selection {
+  background-color: #ff5100;
+}
+
+li:nth-child(20)::selection {
+  background-color: #ff5500;
+}
+
+li:nth-child(21)::selection {
+  background-color: #ff5900;
+}
+
+li:nth-child(22)::selection {
+  background-color: #ff5e00;
+}
+
+li:nth-child(23)::selection {
+  background-color: #ff6200;
+}
+
+li:nth-child(24)::selection {
+  background-color: #ff6600;
+}
+
+li:nth-child(25)::selection {
+  background-color: #ff6a00;
+}
+
+li:nth-child(26)::selection {
+  background-color: #ff6f00;
+}
+
+li:nth-child(27)::selection {
+  background-color: #ff7300;
+}
+
+li:nth-child(28)::selection {
+  background-color: #ff7700;
+}
+
+li:nth-child(29)::selection {
+  background-color: #ff7b00;
+}
+
+li:nth-child(30)::selection {
+  background-color: #ff8000;
+}
+
+li:nth-child(31)::selection {
+  background-color: #ff8400;
+}
+
+li:nth-child(32)::selection {
+  background-color: #ff8800;
+}
+
+li:nth-child(33)::selection {
+  background-color: darkorange;
+}
+
+li:nth-child(34)::selection {
+  background-color: #ff9100;
+}
+
+li:nth-child(35)::selection {
+  background-color: #ff9500;
+}
+
+li:nth-child(36)::selection {
+  background-color: #ff9900;
+}
+
+li:nth-child(37)::selection {
+  background-color: #ff9d00;
+}
+
+li:nth-child(38)::selection {
+  background-color: #ffa200;
+}
+
+li:nth-child(39)::selection {
+  background-color: #ffa600;
+}
+
+li:nth-child(40)::selection {
+  background-color: #ffaa00;
+}
+
+li:nth-child(41)::selection {
+  background-color: #ffae00;
+}
+
+li:nth-child(42)::selection {
+  background-color: #ffb300;
+}
+
+li:nth-child(43)::selection {
+  background-color: #ffb700;
+}
+
+li:nth-child(44)::selection {
+  background-color: #ffbb00;
+}
+
+li:nth-child(45)::selection {
+  background-color: #ffbf00;
+}
+
+li:nth-child(46)::selection {
+  background-color: #ffc400;
+}
+
+li:nth-child(47)::selection {
+  background-color: #ffc800;
+}
+
+li:nth-child(48)::selection {
+  background-color: #ffcc00;
+}
+
+li:nth-child(49)::selection {
+  background-color: #ffd000;
+}
+
+li:nth-child(50)::selection {
+  background-color: #ffd500;
+}
+
+li:nth-child(51)::selection {
+  background-color: #ffd900;
+}
+
+li:nth-child(52)::selection {
+  background-color: #ffdd00;
+}
+
+li:nth-child(53)::selection {
+  background-color: #ffe100;
+}
+
+li:nth-child(54)::selection {
+  background-color: #ffe600;
+}
+
+li:nth-child(55)::selection {
+  background-color: #ffea00;
+}
+
+li:nth-child(56)::selection {
+  background-color: #ffee00;
+}
+
+li:nth-child(57)::selection {
+  background-color: #fff200;
+}
+
+li:nth-child(58)::selection {
+  background-color: #fff700;
+}
+
+li:nth-child(59)::selection {
+  background-color: #fffb00;
+}
+
+li:nth-child(60)::selection {
+  background-color: yellow;
+}
+
+li:nth-child(61)::selection {
+  background-color: #fbff00;
+}
+
+li:nth-child(62)::selection {
+  background-color: #f7ff00;
+}
+
+li:nth-child(63)::selection {
+  background-color: #f2ff00;
+}
+
+li:nth-child(64)::selection {
+  background-color: #eeff00;
+}
+
+li:nth-child(65)::selection {
+  background-color: #eaff00;
+}
+
+li:nth-child(66)::selection {
+  background-color: #e6ff00;
+}
+
+li:nth-child(67)::selection {
+  background-color: #e1ff00;
+}
+
+li:nth-child(68)::selection {
+  background-color: #ddff00;
+}
+
+li:nth-child(69)::selection {
+  background-color: #d9ff00;
+}
+
+li:nth-child(70)::selection {
+  background-color: #d5ff00;
+}
+
+li:nth-child(71)::selection {
+  background-color: #d0ff00;
+}
+
+li:nth-child(72)::selection {
+  background-color: #ccff00;
+}
+
+li:nth-child(73)::selection {
+  background-color: #c8ff00;
+}
+
+li:nth-child(74)::selection {
+  background-color: #c4ff00;
+}
+
+li:nth-child(75)::selection {
+  background-color: #bfff00;
+}
+
+li:nth-child(76)::selection {
+  background-color: #bbff00;
+}
+
+li:nth-child(77)::selection {
+  background-color: #b7ff00;
+}
+
+li:nth-child(78)::selection {
+  background-color: #b3ff00;
+}
+
+li:nth-child(79)::selection {
+  background-color: #aeff00;
+}
+
+li:nth-child(80)::selection {
+  background-color: #aaff00;
+}
+
+li:nth-child(81)::selection {
+  background-color: #a6ff00;
+}
+
+li:nth-child(82)::selection {
+  background-color: #a2ff00;
+}
+
+li:nth-child(83)::selection {
+  background-color: #9dff00;
+}
+
+li:nth-child(84)::selection {
+  background-color: #99ff00;
+}
+
+li:nth-child(85)::selection {
+  background-color: #95ff00;
+}
+
+li:nth-child(86)::selection {
+  background-color: #91ff00;
+}
+
+li:nth-child(87)::selection {
+  background-color: #8cff00;
+}
+
+li:nth-child(88)::selection {
+  background-color: #88ff00;
+}
+
+li:nth-child(89)::selection {
+  background-color: #84ff00;
+}
+
+li:nth-child(90)::selection {
+  background-color: #80ff00;
+}
+
+li:nth-child(91)::selection {
+  background-color: #7bff00;
+}
+
+li:nth-child(92)::selection {
+  background-color: #77ff00;
+}
+
+li:nth-child(93)::selection {
+  background-color: #73ff00;
+}
+
+li:nth-child(94)::selection {
+  background-color: #6fff00;
+}
+
+li:nth-child(95)::selection {
+  background-color: #6aff00;
+}
+
+li:nth-child(96)::selection {
+  background-color: #66ff00;
+}
+
+li:nth-child(97)::selection {
+  background-color: #62ff00;
+}
+
+li:nth-child(98)::selection {
+  background-color: #5eff00;
+}
+
+li:nth-child(99)::selection {
+  background-color: #59ff00;
+}
+
+li:nth-child(100)::selection {
+  background-color: #55ff00;
+}
+
+li:nth-child(101)::selection {
+  background-color: #51ff00;
+}
+
+li:nth-child(102)::selection {
+  background-color: #4dff00;
+}
+
+li:nth-child(103)::selection {
+  background-color: #48ff00;
+}
+
+li:nth-child(104)::selection {
+  background-color: #44ff00;
+}
+
+li:nth-child(105)::selection {
+  background-color: #40ff00;
+}
+
+li:nth-child(106)::selection {
+  background-color: #3cff00;
+}
+
+li:nth-child(107)::selection {
+  background-color: #37ff00;
+}
+
+li:nth-child(108)::selection {
+  background-color: #33ff00;
+}
+
+li:nth-child(109)::selection {
+  background-color: #2fff00;
+}
+
+li:nth-child(110)::selection {
+  background-color: #2bff00;
+}
+
+li:nth-child(111)::selection {
+  background-color: #26ff00;
+}
+
+li:nth-child(112)::selection {
+  background-color: #22ff00;
+}
+
+li:nth-child(113)::selection {
+  background-color: #1eff00;
+}
+
+li:nth-child(114)::selection {
+  background-color: #1aff00;
+}
+
+li:nth-child(115)::selection {
+  background-color: #15ff00;
+}
+
+li:nth-child(116)::selection {
+  background-color: #11ff00;
+}
+
+li:nth-child(117)::selection {
+  background-color: #0dff00;
+}
+
+li:nth-child(118)::selection {
+  background-color: #09ff00;
+}
+
+li:nth-child(119)::selection {
+  background-color: #04ff00;
+}
+
+li:nth-child(120)::selection {
+  background-color: lime;
+}
+
+li:nth-child(121)::selection {
+  background-color: #00ff04;
+}
+
+li:nth-child(122)::selection {
+  background-color: #00ff09;
+}
+
+li:nth-child(123)::selection {
+  background-color: #00ff0d;
+}
+
+li:nth-child(124)::selection {
+  background-color: #00ff11;
+}
+
+li:nth-child(125)::selection {
+  background-color: #00ff15;
+}
+
+li:nth-child(126)::selection {
+  background-color: #00ff1a;
+}
+
+li:nth-child(127)::selection {
+  background-color: #00ff1e;
+}
+
+li:nth-child(128)::selection {
+  background-color: #00ff22;
+}
+
+li:nth-child(129)::selection {
+  background-color: #00ff26;
+}
+
+li:nth-child(130)::selection {
+  background-color: #00ff2b;
+}
+
+li:nth-child(131)::selection {
+  background-color: #00ff2f;
+}
+
+li:nth-child(132)::selection {
+  background-color: #00ff33;
+}
+
+li:nth-child(133)::selection {
+  background-color: #00ff37;
+}
+
+li:nth-child(134)::selection {
+  background-color: #00ff3c;
+}
+
+li:nth-child(135)::selection {
+  background-color: #00ff40;
+}
+
+li:nth-child(136)::selection {
+  background-color: #00ff44;
+}
+
+li:nth-child(137)::selection {
+  background-color: #00ff48;
+}
+
+li:nth-child(138)::selection {
+  background-color: #00ff4d;
+}
+
+li:nth-child(139)::selection {
+  background-color: #00ff51;
+}
+
+li:nth-child(140)::selection {
+  background-color: #00ff55;
+}
+
+li:nth-child(141)::selection {
+  background-color: #00ff59;
+}
+
+li:nth-child(142)::selection {
+  background-color: #00ff5e;
+}
+
+li:nth-child(143)::selection {
+  background-color: #00ff62;
+}
+
+li:nth-child(144)::selection {
+  background-color: #00ff66;
+}
+
+li:nth-child(145)::selection {
+  background-color: #00ff6a;
+}
+
+li:nth-child(146)::selection {
+  background-color: #00ff6f;
+}
+		</code>
+	</pre>
+</section>
+
+<style>
+
+.slide-selection-demo-container {
+	resize: both;
+	overflow: scroll;
+	height: 80vh;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.slide-selection-demo-container li {
+	font-size: 10px;
+	list-style-type: none;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.slide-selection-demo-container li:nth-child(1)::selection {
+  background-color: #ff0400;
+}
+
+.slide-selection-demo-container li:nth-child(2)::selection {
+  background-color: #ff0900;
+}
+
+.slide-selection-demo-container li:nth-child(3)::selection {
+  background-color: #ff0d00;
+}
+
+.slide-selection-demo-container li:nth-child(4)::selection {
+  background-color: #ff1100;
+}
+
+.slide-selection-demo-container li:nth-child(5)::selection {
+  background-color: #ff1500;
+}
+
+.slide-selection-demo-container li:nth-child(6)::selection {
+  background-color: #ff1a00;
+}
+
+.slide-selection-demo-container li:nth-child(7)::selection {
+  background-color: #ff1e00;
+}
+
+.slide-selection-demo-container li:nth-child(8)::selection {
+  background-color: #ff2200;
+}
+
+.slide-selection-demo-container li:nth-child(9)::selection {
+  background-color: #ff2600;
+}
+
+.slide-selection-demo-container li:nth-child(10)::selection {
+  background-color: #ff2b00;
+}
+
+.slide-selection-demo-container li:nth-child(11)::selection {
+  background-color: #ff2f00;
+}
+
+.slide-selection-demo-container li:nth-child(12)::selection {
+  background-color: #ff3300;
+}
+
+.slide-selection-demo-container li:nth-child(13)::selection {
+  background-color: #ff3700;
+}
+
+.slide-selection-demo-container li:nth-child(14)::selection {
+  background-color: #ff3c00;
+}
+
+.slide-selection-demo-container li:nth-child(15)::selection {
+  background-color: #ff4000;
+}
+
+.slide-selection-demo-container li:nth-child(16)::selection {
+  background-color: #ff4400;
+}
+
+.slide-selection-demo-container li:nth-child(17)::selection {
+  background-color: #ff4800;
+}
+
+.slide-selection-demo-container li:nth-child(18)::selection {
+  background-color: #ff4d00;
+}
+
+.slide-selection-demo-container li:nth-child(19)::selection {
+  background-color: #ff5100;
+}
+
+.slide-selection-demo-container li:nth-child(20)::selection {
+  background-color: #ff5500;
+}
+
+.slide-selection-demo-container li:nth-child(21)::selection {
+  background-color: #ff5900;
+}
+
+.slide-selection-demo-container li:nth-child(22)::selection {
+  background-color: #ff5e00;
+}
+
+.slide-selection-demo-container li:nth-child(23)::selection {
+  background-color: #ff6200;
+}
+
+.slide-selection-demo-container li:nth-child(24)::selection {
+  background-color: #ff6600;
+}
+
+.slide-selection-demo-container li:nth-child(25)::selection {
+  background-color: #ff6a00;
+}
+
+.slide-selection-demo-container li:nth-child(26)::selection {
+  background-color: #ff6f00;
+}
+
+.slide-selection-demo-container li:nth-child(27)::selection {
+  background-color: #ff7300;
+}
+
+.slide-selection-demo-container li:nth-child(28)::selection {
+  background-color: #ff7700;
+}
+
+.slide-selection-demo-container li:nth-child(29)::selection {
+  background-color: #ff7b00;
+}
+
+.slide-selection-demo-container li:nth-child(30)::selection {
+  background-color: #ff8000;
+}
+
+.slide-selection-demo-container li:nth-child(31)::selection {
+  background-color: #ff8400;
+}
+
+.slide-selection-demo-container li:nth-child(32)::selection {
+  background-color: #ff8800;
+}
+
+.slide-selection-demo-container li:nth-child(33)::selection {
+  background-color: darkorange;
+}
+
+.slide-selection-demo-container li:nth-child(34)::selection {
+  background-color: #ff9100;
+}
+
+.slide-selection-demo-container li:nth-child(35)::selection {
+  background-color: #ff9500;
+}
+
+.slide-selection-demo-container li:nth-child(36)::selection {
+  background-color: #ff9900;
+}
+
+.slide-selection-demo-container li:nth-child(37)::selection {
+  background-color: #ff9d00;
+}
+
+.slide-selection-demo-container li:nth-child(38)::selection {
+  background-color: #ffa200;
+}
+
+.slide-selection-demo-container li:nth-child(39)::selection {
+  background-color: #ffa600;
+}
+
+.slide-selection-demo-container li:nth-child(40)::selection {
+  background-color: #ffaa00;
+}
+
+.slide-selection-demo-container li:nth-child(41)::selection {
+  background-color: #ffae00;
+}
+
+.slide-selection-demo-container li:nth-child(42)::selection {
+  background-color: #ffb300;
+}
+
+.slide-selection-demo-container li:nth-child(43)::selection {
+  background-color: #ffb700;
+}
+
+.slide-selection-demo-container li:nth-child(44)::selection {
+  background-color: #ffbb00;
+}
+
+.slide-selection-demo-container li:nth-child(45)::selection {
+  background-color: #ffbf00;
+}
+
+.slide-selection-demo-container li:nth-child(46)::selection {
+  background-color: #ffc400;
+}
+
+.slide-selection-demo-container li:nth-child(47)::selection {
+  background-color: #ffc800;
+}
+
+.slide-selection-demo-container li:nth-child(48)::selection {
+  background-color: #ffcc00;
+}
+
+.slide-selection-demo-container li:nth-child(49)::selection {
+  background-color: #ffd000;
+}
+
+.slide-selection-demo-container li:nth-child(50)::selection {
+  background-color: #ffd500;
+}
+
+.slide-selection-demo-container li:nth-child(51)::selection {
+  background-color: #ffd900;
+}
+
+.slide-selection-demo-container li:nth-child(52)::selection {
+  background-color: #ffdd00;
+}
+
+.slide-selection-demo-container li:nth-child(53)::selection {
+  background-color: #ffe100;
+}
+
+.slide-selection-demo-container li:nth-child(54)::selection {
+  background-color: #ffe600;
+}
+
+.slide-selection-demo-container li:nth-child(55)::selection {
+  background-color: #ffea00;
+}
+
+.slide-selection-demo-container li:nth-child(56)::selection {
+  background-color: #ffee00;
+}
+
+.slide-selection-demo-container li:nth-child(57)::selection {
+  background-color: #fff200;
+}
+
+.slide-selection-demo-container li:nth-child(58)::selection {
+  background-color: #fff700;
+}
+
+.slide-selection-demo-container li:nth-child(59)::selection {
+  background-color: #fffb00;
+}
+
+.slide-selection-demo-container li:nth-child(60)::selection {
+  background-color: yellow;
+}
+
+.slide-selection-demo-container li:nth-child(61)::selection {
+  background-color: #fbff00;
+}
+
+.slide-selection-demo-container li:nth-child(62)::selection {
+  background-color: #f7ff00;
+}
+
+.slide-selection-demo-container li:nth-child(63)::selection {
+  background-color: #f2ff00;
+}
+
+.slide-selection-demo-container li:nth-child(64)::selection {
+  background-color: #eeff00;
+}
+
+.slide-selection-demo-container li:nth-child(65)::selection {
+  background-color: #eaff00;
+}
+
+.slide-selection-demo-container li:nth-child(66)::selection {
+  background-color: #e6ff00;
+}
+
+.slide-selection-demo-container li:nth-child(67)::selection {
+  background-color: #e1ff00;
+}
+
+.slide-selection-demo-container li:nth-child(68)::selection {
+  background-color: #ddff00;
+}
+
+.slide-selection-demo-container li:nth-child(69)::selection {
+  background-color: #d9ff00;
+}
+
+.slide-selection-demo-container li:nth-child(70)::selection {
+  background-color: #d5ff00;
+}
+
+.slide-selection-demo-container li:nth-child(71)::selection {
+  background-color: #d0ff00;
+}
+
+.slide-selection-demo-container li:nth-child(72)::selection {
+  background-color: #ccff00;
+}
+
+.slide-selection-demo-container li:nth-child(73)::selection {
+  background-color: #c8ff00;
+}
+
+.slide-selection-demo-container li:nth-child(74)::selection {
+  background-color: #c4ff00;
+}
+
+.slide-selection-demo-container li:nth-child(75)::selection {
+  background-color: #bfff00;
+}
+
+.slide-selection-demo-container li:nth-child(76)::selection {
+  background-color: #bbff00;
+}
+
+.slide-selection-demo-container li:nth-child(77)::selection {
+  background-color: #b7ff00;
+}
+
+.slide-selection-demo-container li:nth-child(78)::selection {
+  background-color: #b3ff00;
+}
+
+.slide-selection-demo-container li:nth-child(79)::selection {
+  background-color: #aeff00;
+}
+
+.slide-selection-demo-container li:nth-child(80)::selection {
+  background-color: #aaff00;
+}
+
+.slide-selection-demo-container li:nth-child(81)::selection {
+  background-color: #a6ff00;
+}
+
+.slide-selection-demo-container li:nth-child(82)::selection {
+  background-color: #a2ff00;
+}
+
+.slide-selection-demo-container li:nth-child(83)::selection {
+  background-color: #9dff00;
+}
+
+.slide-selection-demo-container li:nth-child(84)::selection {
+  background-color: #99ff00;
+}
+
+.slide-selection-demo-container li:nth-child(85)::selection {
+  background-color: #95ff00;
+}
+
+.slide-selection-demo-container li:nth-child(86)::selection {
+  background-color: #91ff00;
+}
+
+.slide-selection-demo-container li:nth-child(87)::selection {
+  background-color: #8cff00;
+}
+
+.slide-selection-demo-container li:nth-child(88)::selection {
+  background-color: #88ff00;
+}
+
+.slide-selection-demo-container li:nth-child(89)::selection {
+  background-color: #84ff00;
+}
+
+.slide-selection-demo-container li:nth-child(90)::selection {
+  background-color: #80ff00;
+}
+
+.slide-selection-demo-container li:nth-child(91)::selection {
+  background-color: #7bff00;
+}
+
+.slide-selection-demo-container li:nth-child(92)::selection {
+  background-color: #77ff00;
+}
+
+.slide-selection-demo-container li:nth-child(93)::selection {
+  background-color: #73ff00;
+}
+
+.slide-selection-demo-container li:nth-child(94)::selection {
+  background-color: #6fff00;
+}
+
+.slide-selection-demo-container li:nth-child(95)::selection {
+  background-color: #6aff00;
+}
+
+.slide-selection-demo-container li:nth-child(96)::selection {
+  background-color: #66ff00;
+}
+
+.slide-selection-demo-container li:nth-child(97)::selection {
+  background-color: #62ff00;
+}
+
+.slide-selection-demo-container li:nth-child(98)::selection {
+  background-color: #5eff00;
+}
+
+.slide-selection-demo-container li:nth-child(99)::selection {
+  background-color: #59ff00;
+}
+
+.slide-selection-demo-container li:nth-child(100)::selection {
+  background-color: #55ff00;
+}
+
+.slide-selection-demo-container li:nth-child(101)::selection {
+  background-color: #51ff00;
+}
+
+.slide-selection-demo-container li:nth-child(102)::selection {
+  background-color: #4dff00;
+}
+
+.slide-selection-demo-container li:nth-child(103)::selection {
+  background-color: #48ff00;
+}
+
+.slide-selection-demo-container li:nth-child(104)::selection {
+  background-color: #44ff00;
+}
+
+.slide-selection-demo-container li:nth-child(105)::selection {
+  background-color: #40ff00;
+}
+
+.slide-selection-demo-container li:nth-child(106)::selection {
+  background-color: #3cff00;
+}
+
+.slide-selection-demo-container li:nth-child(107)::selection {
+  background-color: #37ff00;
+}
+
+.slide-selection-demo-container li:nth-child(108)::selection {
+  background-color: #33ff00;
+}
+
+.slide-selection-demo-container li:nth-child(109)::selection {
+  background-color: #2fff00;
+}
+
+.slide-selection-demo-container li:nth-child(110)::selection {
+  background-color: #2bff00;
+}
+
+.slide-selection-demo-container li:nth-child(111)::selection {
+  background-color: #26ff00;
+}
+
+.slide-selection-demo-container li:nth-child(112)::selection {
+  background-color: #22ff00;
+}
+
+.slide-selection-demo-container li:nth-child(113)::selection {
+  background-color: #1eff00;
+}
+
+.slide-selection-demo-container li:nth-child(114)::selection {
+  background-color: #1aff00;
+}
+
+.slide-selection-demo-container li:nth-child(115)::selection {
+  background-color: #15ff00;
+}
+
+.slide-selection-demo-container li:nth-child(116)::selection {
+  background-color: #11ff00;
+}
+
+.slide-selection-demo-container li:nth-child(117)::selection {
+  background-color: #0dff00;
+}
+
+.slide-selection-demo-container li:nth-child(118)::selection {
+  background-color: #09ff00;
+}
+
+.slide-selection-demo-container li:nth-child(119)::selection {
+  background-color: #04ff00;
+}
+
+.slide-selection-demo-container li:nth-child(120)::selection {
+  background-color: lime;
+}
+
+.slide-selection-demo-container li:nth-child(121)::selection {
+  background-color: #00ff04;
+}
+
+.slide-selection-demo-container li:nth-child(122)::selection {
+  background-color: #00ff09;
+}
+
+.slide-selection-demo-container li:nth-child(123)::selection {
+  background-color: #00ff0d;
+}
+
+.slide-selection-demo-container li:nth-child(124)::selection {
+  background-color: #00ff11;
+}
+
+.slide-selection-demo-container li:nth-child(125)::selection {
+  background-color: #00ff15;
+}
+
+.slide-selection-demo-container li:nth-child(126)::selection {
+  background-color: #00ff1a;
+}
+
+.slide-selection-demo-container li:nth-child(127)::selection {
+  background-color: #00ff1e;
+}
+
+.slide-selection-demo-container li:nth-child(128)::selection {
+  background-color: #00ff22;
+}
+
+.slide-selection-demo-container li:nth-child(129)::selection {
+  background-color: #00ff26;
+}
+
+.slide-selection-demo-container li:nth-child(130)::selection {
+  background-color: #00ff2b;
+}
+
+.slide-selection-demo-container li:nth-child(131)::selection {
+  background-color: #00ff2f;
+}
+
+.slide-selection-demo-container li:nth-child(132)::selection {
+  background-color: #00ff33;
+}
+
+.slide-selection-demo-container li:nth-child(133)::selection {
+  background-color: #00ff37;
+}
+
+.slide-selection-demo-container li:nth-child(134)::selection {
+  background-color: #00ff3c;
+}
+
+.slide-selection-demo-container li:nth-child(135)::selection {
+  background-color: #00ff40;
+}
+
+.slide-selection-demo-container li:nth-child(136)::selection {
+  background-color: #00ff44;
+}
+
+.slide-selection-demo-container li:nth-child(137)::selection {
+  background-color: #00ff48;
+}
+
+.slide-selection-demo-container li:nth-child(138)::selection {
+  background-color: #00ff4d;
+}
+
+.slide-selection-demo-container li:nth-child(139)::selection {
+  background-color: #00ff51;
+}
+
+.slide-selection-demo-container li:nth-child(140)::selection {
+  background-color: #00ff55;
+}
+
+.slide-selection-demo-container li:nth-child(141)::selection {
+  background-color: #00ff59;
+}
+
+.slide-selection-demo-container li:nth-child(142)::selection {
+  background-color: #00ff5e;
+}
+
+.slide-selection-demo-container li:nth-child(143)::selection {
+  background-color: #00ff62;
+}
+
+.slide-selection-demo-container li:nth-child(144)::selection {
+  background-color: #00ff66;
+}
+
+.slide-selection-demo-container li:nth-child(145)::selection {
+  background-color: #00ff6a;
+}
+
+.slide-selection-demo-container li:nth-child(146)::selection {
+  background-color: #00ff6f;
+}
+
+.slide-selection-demo-container li:nth-child(147)::selection {
+  background-color: #00ff73;
+}
+
+.slide-selection-demo-container li:nth-child(148)::selection {
+  background-color: #00ff77;
+}
+
+.slide-selection-demo-container li:nth-child(149)::selection {
+  background-color: #00ff7b;
+}
+
+.slide-selection-demo-container li:nth-child(150)::selection {
+  background-color: #00ff80;
+}
+
+.slide-selection-demo-container li:nth-child(151)::selection {
+  background-color: #00ff84;
+}
+
+.slide-selection-demo-container li:nth-child(152)::selection {
+  background-color: #00ff88;
+}
+
+.slide-selection-demo-container li:nth-child(153)::selection {
+  background-color: #00ff8c;
+}
+
+.slide-selection-demo-container li:nth-child(154)::selection {
+  background-color: #00ff91;
+}
+
+.slide-selection-demo-container li:nth-child(155)::selection {
+  background-color: #00ff95;
+}
+
+.slide-selection-demo-container li:nth-child(156)::selection {
+  background-color: #00ff99;
+}
+
+.slide-selection-demo-container li:nth-child(157)::selection {
+  background-color: #00ff9d;
+}
+
+.slide-selection-demo-container li:nth-child(158)::selection {
+  background-color: #00ffa2;
+}
+
+.slide-selection-demo-container li:nth-child(159)::selection {
+  background-color: #00ffa6;
+}
+
+.slide-selection-demo-container li:nth-child(160)::selection {
+  background-color: #00ffaa;
+}
+
+.slide-selection-demo-container li:nth-child(161)::selection {
+  background-color: #00ffae;
+}
+
+.slide-selection-demo-container li:nth-child(162)::selection {
+  background-color: #00ffb3;
+}
+
+.slide-selection-demo-container li:nth-child(163)::selection {
+  background-color: #00ffb7;
+}
+
+.slide-selection-demo-container li:nth-child(164)::selection {
+  background-color: #00ffbb;
+}
+
+.slide-selection-demo-container li:nth-child(165)::selection {
+  background-color: #00ffbf;
+}
+
+.slide-selection-demo-container li:nth-child(166)::selection {
+  background-color: #00ffc4;
+}
+
+.slide-selection-demo-container li:nth-child(167)::selection {
+  background-color: #00ffc8;
+}
+
+.slide-selection-demo-container li:nth-child(168)::selection {
+  background-color: #00ffcc;
+}
+
+.slide-selection-demo-container li:nth-child(169)::selection {
+  background-color: #00ffd0;
+}
+
+.slide-selection-demo-container li:nth-child(170)::selection {
+  background-color: #00ffd5;
+}
+
+.slide-selection-demo-container li:nth-child(171)::selection {
+  background-color: #00ffd9;
+}
+
+.slide-selection-demo-container li:nth-child(172)::selection {
+  background-color: #00ffdd;
+}
+
+.slide-selection-demo-container li:nth-child(173)::selection {
+  background-color: #00ffe1;
+}
+
+.slide-selection-demo-container li:nth-child(174)::selection {
+  background-color: #00ffe6;
+}
+
+.slide-selection-demo-container li:nth-child(175)::selection {
+  background-color: #00ffea;
+}
+
+.slide-selection-demo-container li:nth-child(176)::selection {
+  background-color: #00ffee;
+}
+
+.slide-selection-demo-container li:nth-child(177)::selection {
+  background-color: #00fff2;
+}
+
+.slide-selection-demo-container li:nth-child(178)::selection {
+  background-color: #00fff7;
+}
+
+.slide-selection-demo-container li:nth-child(179)::selection {
+  background-color: #00fffb;
+}
+
+.slide-selection-demo-container li:nth-child(180)::selection {
+  background-color: cyan;
+}
+
+.slide-selection-demo-container li:nth-child(181)::selection {
+  background-color: #00fbff;
+}
+
+.slide-selection-demo-container li:nth-child(182)::selection {
+  background-color: #00f7ff;
+}
+
+.slide-selection-demo-container li:nth-child(183)::selection {
+  background-color: #00f2ff;
+}
+
+.slide-selection-demo-container li:nth-child(184)::selection {
+  background-color: #00eeff;
+}
+
+.slide-selection-demo-container li:nth-child(185)::selection {
+  background-color: #00eaff;
+}
+
+.slide-selection-demo-container li:nth-child(186)::selection {
+  background-color: #00e6ff;
+}
+
+.slide-selection-demo-container li:nth-child(187)::selection {
+  background-color: #00e1ff;
+}
+
+.slide-selection-demo-container li:nth-child(188)::selection {
+  background-color: #00ddff;
+}
+
+.slide-selection-demo-container li:nth-child(189)::selection {
+  background-color: #00d9ff;
+}
+
+.slide-selection-demo-container li:nth-child(190)::selection {
+  background-color: #00d5ff;
+}
+
+.slide-selection-demo-container li:nth-child(191)::selection {
+  background-color: #00d0ff;
+}
+
+.slide-selection-demo-container li:nth-child(192)::selection {
+  background-color: #00ccff;
+}
+
+.slide-selection-demo-container li:nth-child(193)::selection {
+  background-color: #00c8ff;
+}
+
+.slide-selection-demo-container li:nth-child(194)::selection {
+  background-color: #00c4ff;
+}
+
+.slide-selection-demo-container li:nth-child(195)::selection {
+  background-color: deepskyblue;
+}
+
+.slide-selection-demo-container li:nth-child(196)::selection {
+  background-color: #00bbff;
+}
+
+.slide-selection-demo-container li:nth-child(197)::selection {
+  background-color: #00b7ff;
+}
+
+.slide-selection-demo-container li:nth-child(198)::selection {
+  background-color: #00b3ff;
+}
+
+.slide-selection-demo-container li:nth-child(199)::selection {
+  background-color: #00aeff;
+}
+
+.slide-selection-demo-container li:nth-child(200)::selection {
+  background-color: #00aaff;
+}
+
+.slide-selection-demo-container li:nth-child(201)::selection {
+  background-color: #00a6ff;
+}
+
+.slide-selection-demo-container li:nth-child(202)::selection {
+  background-color: #00a2ff;
+}
+
+.slide-selection-demo-container li:nth-child(203)::selection {
+  background-color: #009dff;
+}
+
+.slide-selection-demo-container li:nth-child(204)::selection {
+  background-color: #0099ff;
+}
+
+.slide-selection-demo-container li:nth-child(205)::selection {
+  background-color: #0095ff;
+}
+
+.slide-selection-demo-container li:nth-child(206)::selection {
+  background-color: #0091ff;
+}
+
+.slide-selection-demo-container li:nth-child(207)::selection {
+  background-color: #008cff;
+}
+
+.slide-selection-demo-container li:nth-child(208)::selection {
+  background-color: #0088ff;
+}
+
+.slide-selection-demo-container li:nth-child(209)::selection {
+  background-color: #0084ff;
+}
+
+.slide-selection-demo-container li:nth-child(210)::selection {
+  background-color: #0080ff;
+}
+
+.slide-selection-demo-container li:nth-child(211)::selection {
+  background-color: #007bff;
+}
+
+.slide-selection-demo-container li:nth-child(212)::selection {
+  background-color: #0077ff;
+}
+
+.slide-selection-demo-container li:nth-child(213)::selection {
+  background-color: #0073ff;
+}
+
+.slide-selection-demo-container li:nth-child(214)::selection {
+  background-color: #006fff;
+}
+
+.slide-selection-demo-container li:nth-child(215)::selection {
+  background-color: #006aff;
+}
+
+.slide-selection-demo-container li:nth-child(216)::selection {
+  background-color: #0066ff;
+}
+
+.slide-selection-demo-container li:nth-child(217)::selection {
+  background-color: #0062ff;
+}
+
+.slide-selection-demo-container li:nth-child(218)::selection {
+  background-color: #005eff;
+}
+
+.slide-selection-demo-container li:nth-child(219)::selection {
+  background-color: #0059ff;
+}
+
+.slide-selection-demo-container li:nth-child(220)::selection {
+  background-color: #0055ff;
+}
+
+.slide-selection-demo-container li:nth-child(221)::selection {
+  background-color: #0051ff;
+}
+
+.slide-selection-demo-container li:nth-child(222)::selection {
+  background-color: #004dff;
+}
+
+.slide-selection-demo-container li:nth-child(223)::selection {
+  background-color: #0048ff;
+}
+
+.slide-selection-demo-container li:nth-child(224)::selection {
+  background-color: #0044ff;
+}
+
+.slide-selection-demo-container li:nth-child(225)::selection {
+  background-color: #0040ff;
+}
+
+.slide-selection-demo-container li:nth-child(226)::selection {
+  background-color: #003cff;
+}
+
+.slide-selection-demo-container li:nth-child(227)::selection {
+  background-color: #0037ff;
+}
+
+.slide-selection-demo-container li:nth-child(228)::selection {
+  background-color: #0033ff;
+}
+
+.slide-selection-demo-container li:nth-child(229)::selection {
+  background-color: #002fff;
+}
+
+.slide-selection-demo-container li:nth-child(230)::selection {
+  background-color: #002bff;
+}
+
+.slide-selection-demo-container li:nth-child(231)::selection {
+  background-color: #0026ff;
+}
+
+.slide-selection-demo-container li:nth-child(232)::selection {
+  background-color: #0022ff;
+}
+
+.slide-selection-demo-container li:nth-child(233)::selection {
+  background-color: #001eff;
+}
+
+.slide-selection-demo-container li:nth-child(234)::selection {
+  background-color: #001aff;
+}
+
+.slide-selection-demo-container li:nth-child(235)::selection {
+  background-color: #0015ff;
+}
+
+.slide-selection-demo-container li:nth-child(236)::selection {
+  background-color: #0011ff;
+}
+
+.slide-selection-demo-container li:nth-child(237)::selection {
+  background-color: #000dff;
+}
+
+.slide-selection-demo-container li:nth-child(238)::selection {
+  background-color: #0009ff;
+}
+
+.slide-selection-demo-container li:nth-child(239)::selection {
+  background-color: #0004ff;
+}
+
+.slide-selection-demo-container li:nth-child(240)::selection {
+  background-color: blue;
+}
+
+.slide-selection-demo-container li:nth-child(241)::selection {
+  background-color: #0400ff;
+}
+
+.slide-selection-demo-container li:nth-child(242)::selection {
+  background-color: #0900ff;
+}
+
+.slide-selection-demo-container li:nth-child(243)::selection {
+  background-color: #0d00ff;
+}
+
+.slide-selection-demo-container li:nth-child(244)::selection {
+  background-color: #1100ff;
+}
+
+.slide-selection-demo-container li:nth-child(245)::selection {
+  background-color: #1500ff;
+}
+
+.slide-selection-demo-container li:nth-child(246)::selection {
+  background-color: #1a00ff;
+}
+
+.slide-selection-demo-container li:nth-child(247)::selection {
+  background-color: #1e00ff;
+}
+
+.slide-selection-demo-container li:nth-child(248)::selection {
+  background-color: #2200ff;
+}
+
+.slide-selection-demo-container li:nth-child(249)::selection {
+  background-color: #2600ff;
+}
+
+.slide-selection-demo-container li:nth-child(250)::selection {
+  background-color: #2b00ff;
+}
+
+.slide-selection-demo-container li:nth-child(251)::selection {
+  background-color: #2f00ff;
+}
+
+.slide-selection-demo-container li:nth-child(252)::selection {
+  background-color: #3300ff;
+}
+
+.slide-selection-demo-container li:nth-child(253)::selection {
+  background-color: #3700ff;
+}
+
+.slide-selection-demo-container li:nth-child(254)::selection {
+  background-color: #3c00ff;
+}
+
+.slide-selection-demo-container li:nth-child(255)::selection {
+  background-color: #4000ff;
+}
+
+.slide-selection-demo-container li:nth-child(256)::selection {
+  background-color: #4400ff;
+}
+
+.slide-selection-demo-container li:nth-child(257)::selection {
+  background-color: #4800ff;
+}
+
+.slide-selection-demo-container li:nth-child(258)::selection {
+  background-color: #4d00ff;
+}
+
+.slide-selection-demo-container li:nth-child(259)::selection {
+  background-color: #5100ff;
+}
+
+.slide-selection-demo-container li:nth-child(260)::selection {
+  background-color: #5500ff;
+}
+
+.slide-selection-demo-container li:nth-child(261)::selection {
+  background-color: #5900ff;
+}
+
+.slide-selection-demo-container li:nth-child(262)::selection {
+  background-color: #5e00ff;
+}
+
+.slide-selection-demo-container li:nth-child(263)::selection {
+  background-color: #6200ff;
+}
+
+.slide-selection-demo-container li:nth-child(264)::selection {
+  background-color: #6600ff;
+}
+
+.slide-selection-demo-container li:nth-child(265)::selection {
+  background-color: #6a00ff;
+}
+
+.slide-selection-demo-container li:nth-child(266)::selection {
+  background-color: #6f00ff;
+}
+
+.slide-selection-demo-container li:nth-child(267)::selection {
+  background-color: #7300ff;
+}
+
+.slide-selection-demo-container li:nth-child(268)::selection {
+  background-color: #7700ff;
+}
+
+.slide-selection-demo-container li:nth-child(269)::selection {
+  background-color: #7b00ff;
+}
+
+.slide-selection-demo-container li:nth-child(270)::selection {
+  background-color: #8000ff;
+}
+
+.slide-selection-demo-container li:nth-child(271)::selection {
+  background-color: #8400ff;
+}
+
+.slide-selection-demo-container li:nth-child(272)::selection {
+  background-color: #8800ff;
+}
+
+.slide-selection-demo-container li:nth-child(273)::selection {
+  background-color: #8c00ff;
+}
+
+.slide-selection-demo-container li:nth-child(274)::selection {
+  background-color: #9100ff;
+}
+
+.slide-selection-demo-container li:nth-child(275)::selection {
+  background-color: #9500ff;
+}
+
+.slide-selection-demo-container li:nth-child(276)::selection {
+  background-color: #9900ff;
+}
+
+.slide-selection-demo-container li:nth-child(277)::selection {
+  background-color: #9d00ff;
+}
+
+.slide-selection-demo-container li:nth-child(278)::selection {
+  background-color: #a200ff;
+}
+
+.slide-selection-demo-container li:nth-child(279)::selection {
+  background-color: #a600ff;
+}
+
+.slide-selection-demo-container li:nth-child(280)::selection {
+  background-color: #aa00ff;
+}
+
+.slide-selection-demo-container li:nth-child(281)::selection {
+  background-color: #ae00ff;
+}
+
+.slide-selection-demo-container li:nth-child(282)::selection {
+  background-color: #b300ff;
+}
+
+.slide-selection-demo-container li:nth-child(283)::selection {
+  background-color: #b700ff;
+}
+
+.slide-selection-demo-container li:nth-child(284)::selection {
+  background-color: #bb00ff;
+}
+
+.slide-selection-demo-container li:nth-child(285)::selection {
+  background-color: #bf00ff;
+}
+
+.slide-selection-demo-container li:nth-child(286)::selection {
+  background-color: #c400ff;
+}
+
+.slide-selection-demo-container li:nth-child(287)::selection {
+  background-color: #c800ff;
+}
+
+.slide-selection-demo-container li:nth-child(288)::selection {
+  background-color: #cc00ff;
+}
+
+.slide-selection-demo-container li:nth-child(289)::selection {
+  background-color: #d000ff;
+}
+
+.slide-selection-demo-container li:nth-child(290)::selection {
+  background-color: #d500ff;
+}
+
+.slide-selection-demo-container li:nth-child(291)::selection {
+  background-color: #d900ff;
+}
+
+.slide-selection-demo-container li:nth-child(292)::selection {
+  background-color: #dd00ff;
+}
+
+.slide-selection-demo-container li:nth-child(293)::selection {
+  background-color: #e100ff;
+}
+
+.slide-selection-demo-container li:nth-child(294)::selection {
+  background-color: #e600ff;
+}
+
+.slide-selection-demo-container li:nth-child(295)::selection {
+  background-color: #ea00ff;
+}
+
+.slide-selection-demo-container li:nth-child(296)::selection {
+  background-color: #ee00ff;
+}
+
+.slide-selection-demo-container li:nth-child(297)::selection {
+  background-color: #f200ff;
+}
+
+.slide-selection-demo-container li:nth-child(298)::selection {
+  background-color: #f700ff;
+}
+
+.slide-selection-demo-container li:nth-child(299)::selection {
+  background-color: #fb00ff;
+}
+
+.slide-selection-demo-container li:nth-child(300)::selection {
+  background-color: magenta;
+}
+
+.slide-selection-demo-container li:nth-child(301)::selection {
+  background-color: #ff00fb;
+}
+
+.slide-selection-demo-container li:nth-child(302)::selection {
+  background-color: #ff00f7;
+}
+
+.slide-selection-demo-container li:nth-child(303)::selection {
+  background-color: #ff00f2;
+}
+
+.slide-selection-demo-container li:nth-child(304)::selection {
+  background-color: #ff00ee;
+}
+
+.slide-selection-demo-container li:nth-child(305)::selection {
+  background-color: #ff00ea;
+}
+
+.slide-selection-demo-container li:nth-child(306)::selection {
+  background-color: #ff00e6;
+}
+
+.slide-selection-demo-container li:nth-child(307)::selection {
+  background-color: #ff00e1;
+}
+
+.slide-selection-demo-container li:nth-child(308)::selection {
+  background-color: #ff00dd;
+}
+
+.slide-selection-demo-container li:nth-child(309)::selection {
+  background-color: #ff00d9;
+}
+
+.slide-selection-demo-container li:nth-child(310)::selection {
+  background-color: #ff00d5;
+}
+
+.slide-selection-demo-container li:nth-child(311)::selection {
+  background-color: #ff00d0;
+}
+
+.slide-selection-demo-container li:nth-child(312)::selection {
+  background-color: #ff00cc;
+}
+
+.slide-selection-demo-container li:nth-child(313)::selection {
+  background-color: #ff00c8;
+}
+
+.slide-selection-demo-container li:nth-child(314)::selection {
+  background-color: #ff00c4;
+}
+
+.slide-selection-demo-container li:nth-child(315)::selection {
+  background-color: #ff00bf;
+}
+
+.slide-selection-demo-container li:nth-child(316)::selection {
+  background-color: #ff00bb;
+}
+
+.slide-selection-demo-container li:nth-child(317)::selection {
+  background-color: #ff00b7;
+}
+
+.slide-selection-demo-container li:nth-child(318)::selection {
+  background-color: #ff00b3;
+}
+
+.slide-selection-demo-container li:nth-child(319)::selection {
+  background-color: #ff00ae;
+}
+
+.slide-selection-demo-container li:nth-child(320)::selection {
+  background-color: #ff00aa;
+}
+
+.slide-selection-demo-container li:nth-child(321)::selection {
+  background-color: #ff00a6;
+}
+
+.slide-selection-demo-container li:nth-child(322)::selection {
+  background-color: #ff00a2;
+}
+
+.slide-selection-demo-container li:nth-child(323)::selection {
+  background-color: #ff009d;
+}
+
+.slide-selection-demo-container li:nth-child(324)::selection {
+  background-color: #ff0099;
+}
+
+.slide-selection-demo-container li:nth-child(325)::selection {
+  background-color: #ff0095;
+}
+
+.slide-selection-demo-container li:nth-child(326)::selection {
+  background-color: #ff0091;
+}
+
+.slide-selection-demo-container li:nth-child(327)::selection {
+  background-color: #ff008c;
+}
+
+.slide-selection-demo-container li:nth-child(328)::selection {
+  background-color: #ff0088;
+}
+
+.slide-selection-demo-container li:nth-child(329)::selection {
+  background-color: #ff0084;
+}
+
+.slide-selection-demo-container li:nth-child(330)::selection {
+  background-color: #ff0080;
+}
+
+.slide-selection-demo-container li:nth-child(331)::selection {
+  background-color: #ff007b;
+}
+
+.slide-selection-demo-container li:nth-child(332)::selection {
+  background-color: #ff0077;
+}
+
+.slide-selection-demo-container li:nth-child(333)::selection {
+  background-color: #ff0073;
+}
+
+.slide-selection-demo-container li:nth-child(334)::selection {
+  background-color: #ff006f;
+}
+
+.slide-selection-demo-container li:nth-child(335)::selection {
+  background-color: #ff006a;
+}
+
+.slide-selection-demo-container li:nth-child(336)::selection {
+  background-color: #ff0066;
+}
+
+.slide-selection-demo-container li:nth-child(337)::selection {
+  background-color: #ff0062;
+}
+
+.slide-selection-demo-container li:nth-child(338)::selection {
+  background-color: #ff005e;
+}
+
+.slide-selection-demo-container li:nth-child(339)::selection {
+  background-color: #ff0059;
+}
+
+.slide-selection-demo-container li:nth-child(340)::selection {
+  background-color: #ff0055;
+}
+
+.slide-selection-demo-container li:nth-child(341)::selection {
+  background-color: #ff0051;
+}
+
+.slide-selection-demo-container li:nth-child(342)::selection {
+  background-color: #ff004d;
+}
+
+.slide-selection-demo-container li:nth-child(343)::selection {
+  background-color: #ff0048;
+}
+
+.slide-selection-demo-container li:nth-child(344)::selection {
+  background-color: #ff0044;
+}
+
+.slide-selection-demo-container li:nth-child(345)::selection {
+  background-color: #ff0040;
+}
+
+.slide-selection-demo-container li:nth-child(346)::selection {
+  background-color: #ff003c;
+}
+
+.slide-selection-demo-container li:nth-child(347)::selection {
+  background-color: #ff0037;
+}
+
+.slide-selection-demo-container li:nth-child(348)::selection {
+  background-color: #ff0033;
+}
+
+.slide-selection-demo-container li:nth-child(349)::selection {
+  background-color: #ff002f;
+}
+
+.slide-selection-demo-container li:nth-child(350)::selection {
+  background-color: #ff002b;
+}
+
+.slide-selection-demo-container li:nth-child(351)::selection {
+  background-color: #ff0026;
+}
+
+.slide-selection-demo-container li:nth-child(352)::selection {
+  background-color: #ff0022;
+}
+
+.slide-selection-demo-container li:nth-child(353)::selection {
+  background-color: #ff001e;
+}
+
+.slide-selection-demo-container li:nth-child(354)::selection {
+  background-color: #ff001a;
+}
+
+.slide-selection-demo-container li:nth-child(355)::selection {
+  background-color: #ff0015;
+}
+
+.slide-selection-demo-container li:nth-child(356)::selection {
+  background-color: #ff0011;
+}
+
+.slide-selection-demo-container li:nth-child(357)::selection {
+  background-color: #ff000d;
+}
+
+.slide-selection-demo-container li:nth-child(358)::selection {
+  background-color: #ff0009;
+}
+
+.slide-selection-demo-container li:nth-child(359)::selection {
+  background-color: #ff0004;
+}
+
+.slide-selection-demo-container li:nth-child(360)::selection {
+  background-color: red;
+}
+</style>
+
+<section class="slide-selection-demo">
+	<div class="slide-selection-demo-container">
+		<small>Highlight this text from top to bottom!</small>
+		<ul>
+			<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit tempore totam, quibusdam, alias officiis corporis cupiditate minima debitis vel reiciendis temporibus voluptatem, amet quas, consectetur praesentium harum assumenda quasi et.</li>
+			<li>Nesciunt voluptas ullam dolores repellendus voluptate assumenda, animi soluta doloremque molestias, aut voluptatum consequatur culpa officiis deserunt adipisci voluptatibus eligendi omnis, dolore dolorem hic sint. Tempora mollitia sunt consectetur libero!</li>
+			<li>A, quos, temporibus. Tenetur quis enim voluptate fugit aut tempore quo nihil similique officia amet dolore ratione nesciunt atque placeat adipisci in dolorem consectetur minima eveniet incidunt autem, culpa. Omnis!</li>
+			<li>Odio distinctio, impedit, accusantium quod praesentium vero sequi officiis labore hic iure enim magni nihil tempora corporis nisi odit, libero pariatur. At aspernatur voluptatum eligendi porro cumque voluptatem ab maxime.</li>
+			<li>Perspiciatis odit autem, accusamus quidem excepturi atque animi deleniti nisi ab, officiis similique, libero enim consequatur architecto deserunt quasi ea eveniet quaerat! Perferendis soluta omnis fuga. Repudiandae adipisci necessitatibus enim.</li>
+			<li>Consequatur ex ab ut et ratione necessitatibus nulla, numquam voluptatum dolore quos dignissimos delectus adipisci quod quidem nihil repellat nemo error natus, quibusdam. Dolores, culpa, cum! Eligendi consequuntur blanditiis minus.</li>
+			<li>Consectetur reprehenderit repellat aliquid porro doloremque laboriosam similique eum sapiente? Nulla et assumenda deserunt vero natus suscipit beatae maxime, adipisci accusamus molestias repellat nam eos eum ipsum id, tempore, tempora.</li>
+			<li>Quia aliquid, corporis incidunt modi, soluta iure numquam temporibus nisi suscipit, vel earum delectus, non ad eius consequatur itaque ipsa repudiandae doloremque ipsum labore atque iste harum? Fugiat, nam, id.</li>
+			<li>Pariatur, porro, maiores. Fugiat velit dicta accusantium quis debitis fuga mollitia rem atque distinctio maxime vitae recusandae hic iusto excepturi perferendis nesciunt laudantium temporibus magni odio eligendi officia, illo possimus.</li>
+			<li>Nulla illum nam, repudiandae, deleniti consectetur officiis! Quia ducimus quam nesciunt similique blanditiis recusandae error minima ea doloribus. At laudantium atque officiis explicabo nobis iusto asperiores quam, possimus amet ut.</li>
+			<li>Earum ratione inventore in odit, incidunt quam voluptatum ullam ipsam eaque, facere recusandae aperiam possimus optio, itaque non culpa et! Nam accusamus at fuga itaque deleniti sint aperiam, ea mollitia!</li>
+			<li>Sunt placeat molestias officiis mollitia ipsum vero in perspiciatis, ratione doloremque totam, blanditiis corporis quaerat accusantium quis repudiandae ullam, molestiae facilis! Excepturi illo est distinctio ut, debitis neque recusandae vero!</li>
+			<li>Iure dolor id, delectus adipisci distinctio iusto quia modi. Voluptate nesciunt temporibus soluta ducimus delectus doloremque, cum modi voluptatum saepe veritatis, dignissimos! Iure eligendi culpa, at nulla sunt repudiandae dolorum.</li>
+			<li>Ipsum at iure laudantium atque facilis, earum ducimus nostrum natus dolores, in corporis eius est voluptas illum, amet nam! Doloremque ab consectetur molestias facilis error dolore iure repudiandae voluptatibus magni.</li>
+			<li>Iure praesentium numquam aspernatur, qui assumenda, inventore cumque, animi nulla nobis quam dicta aut eius recusandae, dolorem maiores voluptas distinctio. Temporibus, ipsa dolor repellendus molestiae aut? Qui eum et distinctio.</li>
+			<li>Et cumque ex, doloribus. Quasi, assumenda natus voluptatem numquam nisi corporis aliquam distinctio neque pariatur omnis adipisci illum, qui quaerat odit fugit voluptate, dolorum! Facere iusto, repellat illum maiores minus.</li>
+			<li>Voluptate assumenda voluptatibus, similique in temporibus eius natus non reiciendis animi et iure hic. At ipsa quae rem reiciendis quasi aliquam itaque quo natus quibusdam provident accusantium delectus, nam nisi.</li>
+			<li>Illo reprehenderit corrupti quas facere quidem quam est, dolorem fugiat praesentium assumenda officiis veritatis dolores distinctio ipsum incidunt, nesciunt consequuntur accusamus. Esse neque cumque doloremque veniam et commodi numquam nostrum!</li>
+			<li>A laboriosam cumque id aliquam. Est sint ratione, vero modi dolore itaque voluptate cumque aperiam adipisci aliquid, magni tempora atque sunt nihil minus dolor, doloribus saepe accusamus assumenda iusto. Ad.</li>
+			<li>Aliquam, pariatur expedita! Esse pariatur ducimus natus delectus recusandae suscipit facere quo officiis veritatis! Soluta tempora vel sit quod consequatur. Ad, inventore fuga numquam at et atque, quis quo voluptatem.</li>
+			<li>Fugit doloribus consequatur provident quos dolorum commodi assumenda repellendus non explicabo quidem! Mollitia id, error ipsam facere sapiente itaque inventore perferendis. Inventore minus commodi non sed unde ea expedita blanditiis.</li>
+			<li>Voluptate corrupti facere corporis, totam magni sequi atque aspernatur, voluptatem, repudiandae eos, explicabo perferendis rem quas veritatis reiciendis! Corporis, fugit culpa numquam alias nostrum sapiente delectus autem a laboriosam pariatur.</li>
+			<li>Optio quae, ducimus fuga aliquid impedit odit, placeat labore eligendi, hic dolores mollitia ea harum maiores ratione veritatis eaque pariatur! Nemo totam adipisci veniam sunt consequatur itaque esse eum obcaecati!</li>
+			<li>Earum id dolorem odit quos consectetur, rem repellat unde magni nesciunt porro repellendus fugit minima, assumenda saepe, qui dolore quis velit optio suscipit tempora repudiandae! Consectetur molestiae quo cumque sit.</li>
+			<li>Facere omnis rerum velit veniam sunt reiciendis voluptatum, sint saepe doloremque dignissimos modi excepturi odit maxime ratione quaerat voluptates perferendis dolor delectus accusantium deleniti ipsa tempora autem similique aliquam! Harum!</li>
+			<li>Quia impedit nostrum maiores laboriosam sunt nihil inventore similique amet facilis aliquam vero perferendis esse, eligendi, iste alias delectus ad aperiam, repellat! Eveniet animi repudiandae doloremque odit iste vel delectus?</li>
+			<li>Hic, doloribus, impedit laboriosam necessitatibus illo fugit vitae, repellat amet molestias dolore esse similique quae quasi laudantium corrupti repellendus voluptas eaque sit, sapiente eveniet beatae? Et modi pariatur velit. Veritatis!</li>
+			<li>Ipsa libero recusandae rerum non, incidunt, debitis natus, a qui praesentium, iure tempora? Pariatur animi iure qui explicabo mollitia odio a veniam sequi, perferendis necessitatibus sed, numquam deserunt amet eum.</li>
+			<li>Numquam inventore assumenda repudiandae nesciunt autem rem blanditiis. Ratione officia, quos iste non quaerat minus, quia blanditiis tempora, architecto debitis dolorem, vel iusto. Exercitationem in harum explicabo omnis error eum.</li>
+			<li>Fugit, consequuntur, assumenda! Magni repudiandae similique consequuntur, ducimus laboriosam ipsam molestiae fuga illum inventore corporis nulla veritatis reprehenderit amet natus maxime voluptate optio, fugit atque impedit. Architecto vero nihil, eum!</li>
+			<li>Voluptate culpa voluptas ducimus quisquam temporibus delectus veniam unde inventore dolore nemo ipsa commodi, qui aut, repellendus dolor vel aliquam nobis ab. Tempore delectus reprehenderit tenetur quasi, sed neque dignissimos!</li>
+			<li>Labore dolorum repellat nesciunt unde placeat explicabo, dignissimos dolor quisquam vitae corporis, excepturi deserunt facere adipisci. Expedita voluptatem ducimus quaerat perspiciatis nam ad tenetur qui! Et, totam fuga. Quibusdam, a!</li>
+			<li>Explicabo labore maiores ad tempore autem dolores alias accusamus distinctio eos reprehenderit saepe aspernatur, sunt a ullam mollitia facilis impedit pariatur ut? Delectus ipsa quae, perferendis similique quis voluptatem, voluptatibus.</li>
+			<li>Quaerat, illo qui, asperiores vel beatae vitae eius veritatis nulla saepe dolorum iusto enim molestias labore delectus nihil illum. Reprehenderit facere est, quaerat ex voluptas, quia nostrum iure! Tempore, velit.</li>
+			<li>Maiores ipsa tempore aliquam officiis numquam accusamus nulla temporibus reprehenderit amet voluptate. Blanditiis, harum doloremque. Illum amet cum voluptatum quam molestiae corporis, quisquam, ea, et velit quidem adipisci aspernatur officia?</li>
+			<li>Provident veniam neque exercitationem perferendis atque facilis, numquam cum nam molestias temporibus, earum sunt alias est. Tenetur qui porro ratione, saepe expedita adipisci voluptates modi cum commodi quidem! Tempora, sunt?</li>
+			<li>Dolores in natus, nisi odio delectus temporibus sunt doloribus corporis asperiores, quis, placeat assumenda vel veritatis ipsam, dolore voluptatibus magni molestiae! Maxime esse sunt, in officia voluptatem accusamus. Ad, officiis.</li>
+			<li>Consequatur adipisci voluptatibus nam assumenda! Magnam commodi, in hic molestiae tempora dolorum ex similique, doloremque, error dicta quisquam quis vel, numquam placeat debitis voluptatum. Molestias iusto temporibus dolore beatae quas!</li>
+			<li>Consequuntur delectus deserunt sint suscipit voluptate animi accusantium quam nam beatae, repellat doloribus perspiciatis enim, soluta, doloremque incidunt dolores voluptates sunt. Quae debitis blanditiis est minus deleniti nobis rem, magni?</li>
+			<li>Fugit, doloribus officiis veniam officia quibusdam odio iste reiciendis facilis magni culpa rerum atque voluptate unde fuga dolorem vitae non. Animi dolorem amet, doloremque a minima quidem iure voluptatum rerum?</li>
+			<li>Distinctio aspernatur quam eos fugit porro, hic necessitatibus id modi ullam ipsa, architecto fuga libero adipisci, numquam iste rerum. Commodi expedita maxime optio cupiditate! Nam corporis, eaque praesentium asperiores at.</li>
+			<li>Accusamus quo unde ipsa nemo sunt placeat animi iure, ex iusto. Accusantium dignissimos, veritatis ea. Voluptatum similique ea, quidem, officia repellat hic perspiciatis enim facilis blanditiis, harum non alias. Ducimus.</li>
+			<li>Maxime dolore, quis molestias officiis repudiandae eligendi, provident, quidem iure qui nesciunt suscipit similique voluptatem praesentium magni quae ratione esse possimus sint quaerat doloribus. Fuga non vel neque quia omnis.</li>
+			<li>Ipsa delectus facilis nam, deserunt sapiente explicabo, debitis eum, amet inventore perferendis tenetur? Totam officiis, recusandae eveniet. Dolores fugiat, mollitia labore quasi vel sequi assumenda! Aliquid adipisci quibusdam accusamus saepe.</li>
+			<li>Ex laboriosam excepturi, totam mollitia! Excepturi adipisci expedita culpa dolorum laudantium, officia aut nemo reprehenderit quisquam ab vitae! In quaerat quisquam porro a, nesciunt totam cumque vel inventore, aliquid iste.</li>
+			<li>Praesentium rerum delectus, temporibus magni harum minus! Velit magni pariatur fugit reiciendis quae voluptatem numquam illum, natus dolores soluta earum itaque sunt enim alias distinctio sint, possimus adipisci accusamus quam.</li>
+			<li>Possimus optio autem, officia iure provident recusandae, repellat officiis facilis asperiores, rem voluptas expedita dignissimos reprehenderit ut blanditiis quia cupiditate totam molestiae mollitia excepturi veniam magnam ea pariatur? Voluptate, dolores?</li>
+			<li>Consectetur voluptatem obcaecati voluptatibus voluptates vero, modi inventore architecto quis maxime, beatae debitis similique quod facilis temporibus molestias ea repellendus repellat, dolore itaque quam! Molestiae laboriosam delectus quod sint atque!</li>
+			<li>Obcaecati saepe similique, molestias dolorum fugit corporis veritatis quidem cupiditate doloremque in illum, nisi sapiente aliquam recusandae dolore, animi officia reprehenderit minus repellat error vero atque ea illo quod necessitatibus.</li>
+			<li>Amet eos obcaecati, aut modi atque quod provident est non dolor mollitia exercitationem reprehenderit, molestiae ea, sint asperiores esse explicabo odio! Quos nostrum quidem qui temporibus sint accusamus quibusdam aliquid.</li>
+			<li>Odio iure aspernatur reiciendis nulla deleniti veniam aperiam quaerat sint suscipit corporis numquam omnis laborum, quasi possimus, mollitia, a vitae blanditiis! Corporis rem dignissimos consequatur, aliquam quaerat ratione laborum non!</li>
+			<li>Saepe porro ex, quod a. Provident ut, eum, placeat officia nesciunt possimus incidunt culpa, veritatis accusamus sint rem dignissimos dolore facilis distinctio delectus ea accusantium ipsa obcaecati earum error fuga.</li>
+			<li>Harum eligendi ipsum labore porro temporibus deleniti et. Quidem aut iste quaerat labore, doloribus optio, laborum voluptatibus animi, necessitatibus exercitationem blanditiis quam nam nihil quos harum mollitia corporis eligendi dolore.</li>
+			<li>In, perspiciatis! Ipsam modi assumenda deleniti soluta corporis praesentium facilis, quis, ipsa eligendi dicta, nihil, tempora! Possimus exercitationem quos rerum et quae, aspernatur dicta consequuntur commodi, quidem deleniti minima, adipisci.</li>
+			<li>Voluptatum culpa, dolorem iure adipisci quasi fugiat rem delectus vero odit eos deserunt, facere numquam molestias accusamus minus quibusdam nemo aspernatur eaque, officiis vel. Deleniti excepturi magni, assumenda adipisci repudiandae.</li>
+			<li>In nulla corporis impedit, aperiam assumenda repellat quam sunt velit mollitia, laborum dolor neque. Ullam, ratione vitae quam obcaecati, porro animi mollitia laboriosam tempore aut non reprehenderit earum tenetur architecto.</li>
+			<li>Ea quae eius numquam velit, est temporibus. Natus nulla ipsum quos aperiam dolores sed id, odit, impedit fugit obcaecati minus, totam, deserunt veniam molestias expedita! Quasi molestiae, est laudantium cum.</li>
+			<li>Sequi quae facere voluptatibus pariatur, doloribus quaerat a necessitatibus porro repellendus vel corrupti delectus repudiandae eaque reiciendis, explicabo similique placeat id? Consequuntur assumenda ut, obcaecati est, alias ea dolore sapiente!</li>
+			<li>Earum nesciunt necessitatibus ullam expedita ex aliquam quas quibusdam labore consequuntur harum distinctio voluptas officiis quia, fugit atque? Corporis voluptatum laudantium reiciendis itaque at sit tempora perspiciatis nam quos unde.</li>
+			<li>Nisi ullam veniam quaerat officiis ipsam nam saepe dolore pariatur mollitia explicabo, temporibus est sint sapiente quisquam amet eum suscipit labore, distinctio molestiae sunt accusamus ab quam neque. Nostrum, quibusdam.</li>
+			<li>Quibusdam magni omnis cupiditate ex repudiandae dolorum, natus enim ad quos sunt optio nihil vero alias aliquid nobis praesentium numquam cum, illo sit iste ipsa ullam corporis ut! Numquam, impedit!</li>
+			<li>Quae suscipit ratione incidunt veritatis eveniet dolorum distinctio qui deleniti quasi, asperiores eaque laborum ab ipsa facere, voluptas labore. Quaerat totam corporis, id nam minima architecto et nesciunt iste eligendi!</li>
+			<li>Quod reprehenderit, natus ea debitis adipisci amet nemo et magni perferendis possimus architecto sequi tenetur eum. Hic debitis, dignissimos et odio, ut dolores numquam nulla! Cumque atque doloremque qui. Eaque.</li>
+			<li>Iure, eligendi, sapiente! Quam maxime modi aut ab, dolorum asperiores at, voluptatibus eos nobis accusantium rem omnis incidunt vel illum in repellendus sit ipsam non reiciendis! Omnis, provident recusandae quo.</li>
+			<li>Iste eaque, recusandae, dolorum eligendi asperiores quasi tempore alias voluptatibus minus, unde temporibus iure mollitia ex nisi aliquid officia aut? Velit nemo a ipsam ullam iste quibusdam pariatur ducimus voluptatibus!</li>
+			<li>Vitae sapiente est tempora qui facere, eum dolorem odio, maxime, quia, labore corporis molestias! Quia et doloribus fuga excepturi molestiae iste explicabo! Quidem animi, beatae illum quaerat, inventore earum libero!</li>
+			<li>Ea qui cumque provident temporibus distinctio cupiditate labore asperiores amet illum molestiae laudantium nulla maiores quod aspernatur, nobis culpa! Praesentium alias consequuntur cum impedit, dolore voluptatibus assumenda error. Ipsam, eveniet!</li>
+			<li>Qui deleniti assumenda ea quo. Sapiente aliquid aperiam molestias doloremque expedita vel neque, quae nesciunt, iure at ducimus saepe dolores ex eum esse, hic quam harum tempore laboriosam nam perferendis!</li>
+			<li>Consequatur fugit ex repellat quos quod unde, corporis, officiis minus, adipisci nobis voluptas qui perspiciatis earum odio eligendi non sit ipsum asperiores. Quis eos cumque quaerat ipsa earum sed distinctio?</li>
+			<li>Impedit ut iusto facere. Temporibus quisquam id ipsum ratione molestiae ducimus maiores sequi minus porro non asperiores labore hic, nam perferendis ex iure voluptate? Quo molestias pariatur eaque ipsum id!</li>
+			<li>Nobis id dignissimos eius quasi, at ipsum voluptatem, velit quibusdam deleniti repudiandae porro alias distinctio, aliquid unde! Sed perspiciatis, reprehenderit, vitae a similique error labore tenetur. Rem laboriosam, nulla numquam.</li>
+			<li>Illo at repellendus, error delectus debitis, dolorum dolores voluptatibus id quia numquam, cupiditate soluta itaque impedit praesentium totam optio, dicta aliquam a consectetur sequi? Ab minus esse, assumenda beatae at.</li>
+			<li>Molestiae quia, provident numquam iusto tenetur quisquam ullam harum id aperiam error blanditiis delectus dicta voluptate, totam ab repudiandae repellendus alias ipsum incidunt, minima temporibus quaerat doloribus! Pariatur, nulla, obcaecati.</li>
+			<li>Architecto dolore iste tenetur ratione, et, sit facilis quam repudiandae aliquid asperiores alias provident fugit unde odit repellendus tempore sed doloremque tempora exercitationem! Asperiores atque in nemo ea quaerat deserunt.</li>
+			<li>Voluptatum ea perferendis, animi ex dicta id magni rem, officia facilis atque voluptas sit nulla alias ab eum. Mollitia quod, voluptates incidunt ut reprehenderit ab perspiciatis. Reprehenderit quia, dolore placeat?</li>
+			<li>Delectus sint, placeat quibusdam voluptates ratione dolorem, sed ea sapiente autem blanditiis doloribus alias. Nam facilis eum illum, consequuntur vitae! Sequi, dolorem, nihil. Laudantium voluptates cum aliquam modi, voluptas dolor.</li>
+			<li>Rerum similique aliquam quasi, voluptates aspernatur aliquid dolor, ab explicabo exercitationem cupiditate! Iste esse iusto natus illo distinctio atque impedit commodi, ipsum culpa quas, quidem eaque, ad accusamus enim quasi?</li>
+			<li>Natus necessitatibus unde beatae, ratione in ad sunt, vitae ipsum, omnis, aliquam rem iste quas fuga blanditiis debitis? Rem expedita error, iure ratione maiores quae! Expedita in nihil ipsa facere.</li>
+			<li>Nemo quo molestiae assumenda nam commodi quos voluptate nihil magnam culpa porro labore delectus, fuga aspernatur nesciunt doloremque accusantium eligendi saepe, ea itaque odio quod! In amet reprehenderit iusto fugiat!</li>
+			<li>Architecto explicabo ad commodi inventore? Ad quisquam, vero porro ea numquam tenetur natus laudantium a, expedita modi ipsum tempore nesciunt asperiores voluptatum cumque, in praesentium. Accusamus vero, voluptates at temporibus!</li>
+			<li>A ipsam non ea dolor repellendus blanditiis, unde eveniet iusto iure voluptatum ad. Deleniti fugiat, asperiores necessitatibus voluptas corrupti aspernatur error, atque minus quod quo sed amet totam temporibus doloremque.</li>
+			<li>Animi quas, illum vitae minima nesciunt incidunt quo nulla veniam ab quis blanditiis provident perferendis excepturi cupiditate ipsa veritatis, consequuntur magnam quae. Similique id doloremque provident numquam maiores vero, quaerat.</li>
+			<li>Distinctio, adipisci perferendis temporibus praesentium iusto ducimus illum dolore. Quidem molestias nisi cum ad illo dicta enim omnis porro recusandae tempore, saepe ipsum magnam consequatur, quas ratione eaque, praesentium eligendi!</li>
+			<li>Magnam accusantium pariatur itaque ullam, quos harum expedita molestiae totam? Porro quibusdam cupiditate hic facilis repellendus neque suscipit vitae, temporibus dicta eius, iure. Reiciendis dicta magnam nam, consectetur commodi molestias!</li>
+			<li>Voluptatibus vitae nisi sit est doloribus quis eius animi, tempora ipsa magni reprehenderit voluptatum distinctio quidem sed ut debitis amet facere, id nesciunt! Eligendi temporibus iusto odio dolores, nulla rerum!</li>
+			<li>Id eligendi obcaecati, animi, maiores neque eum unde quo aliquam nostrum! Officia deleniti, asperiores eos voluptas iure non, tempore explicabo ipsum eum maxime minima, obcaecati, esse quia sunt omnis repellendus!</li>
+			<li>Excepturi obcaecati ipsum temporibus odit numquam quae. Perferendis ipsam similique distinctio itaque dignissimos nobis natus et molestiae. Nesciunt quaerat, sit non velit eos, ea, animi laudantium quis quod eligendi temporibus?</li>
+			<li>Ipsam assumenda modi laborum, consequuntur facilis quod ex facere praesentium, commodi voluptas doloribus. Iste perspiciatis molestias eum recusandae. Maxime numquam accusantium odit et modi quo neque voluptatum ipsam, quasi asperiores!</li>
+			<li>A cumque ipsa delectus dolore sequi vel sit nostrum, harum, blanditiis sint fugit, voluptate et error odio ex eligendi similique. Amet nam placeat dolorum facilis, cupiditate reiciendis cumque quae natus!</li>
+			<li>Doloremque, esse fugiat adipisci natus quas tempora fugit. Ratione, distinctio voluptates voluptatem unde enim itaque blanditiis autem eum sequi atque reiciendis. Possimus, totam, deleniti. Excepturi placeat, optio repellendus ipsum odio.</li>
+			<li>Culpa nam animi adipisci repellat iure ad sit est, magnam eius deserunt dicta consequatur quas optio voluptates quo officia numquam, recusandae, commodi nihil eum quia fugit aliquid? Architecto, perspiciatis delectus.</li>
+			<li>Eius laboriosam corrupti, incidunt provident temporibus, aspernatur unde ad tempore, amet quae reprehenderit. Quia sed repellendus dolores quaerat id, pariatur repellat nesciunt saepe officia delectus dolorem veniam ab, ut consequuntur.</li>
+			<li>Corrupti, beatae vero. Consectetur dicta tenetur optio, non nesciunt porro sunt, repudiandae quis! Quas tempora possimus voluptatum. Unde quos, pariatur, ea, consequuntur soluta ipsum error cumque, enim blanditiis eum itaque.</li>
+			<li>Laboriosam, hic, est. Qui hic animi dolorum quis culpa nemo, temporibus alias soluta delectus libero, in aspernatur deleniti voluptates quibusdam inventore labore omnis amet esse quos excepturi maiores dicta consequatur.</li>
+			<li>Quas libero, itaque, sed minus molestiae quod voluptas ullam inventore dolore nobis numquam reprehenderit. Unde, commodi voluptatem qui dolores ipsam quaerat esse sapiente. Enim quis consequatur est, debitis quidem temporibus.</li>
+			<li>Dicta autem vel accusantium corporis, magnam ipsam asperiores iusto tenetur sed veniam nulla praesentium laborum ad provident ea aut, fugiat maiores. Consectetur eaque doloribus exercitationem, corporis id culpa repudiandae ducimus?</li>
+			<li>Distinctio sint pariatur, praesentium. Labore magni, maiores velit quia, optio totam magnam voluptatibus officia quisquam rem eveniet harum. Commodi autem pariatur aut deserunt libero laboriosam architecto est, distinctio officia facere.</li>
+			<li>Est corporis, voluptatum, maiores quibusdam amet dignissimos ad, modi sequi alias tempore aperiam non cupiditate nam reprehenderit veritatis. Officia quod perspiciatis eos atque placeat voluptatibus mollitia deserunt quam dolorem quae.</li>
+			<li>Commodi dolore explicabo architecto dolor similique iusto expedita neque perferendis vitae! Esse ea delectus aspernatur, vero est praesentium maxime quia inventore sint. Aliquam iure dolorem neque voluptatum, maxime sequi repudiandae.</li>
+			<li>Quod, ut laboriosam. Consequuntur harum quo minima commodi laboriosam! Eum itaque recusandae quibusdam consectetur deleniti, nemo veritatis iste consequuntur pariatur aperiam earum numquam delectus neque, vitae corporis odit cupiditate enim!</li>
+			<li>Aspernatur nihil saepe vero iste doloribus accusantium molestias eaque optio officiis omnis deleniti, rem labore repellendus, quam, quasi dignissimos quia facere. Quam quas placeat temporibus, corrupti quibusdam unde facilis alias!</li>
+			<li>Ullam nulla expedita cum ipsam saepe aliquid non aspernatur reiciendis voluptatum nisi doloribus ab magni voluptatem sequi labore, itaque voluptate repudiandae maiores! Reprehenderit quisquam excepturi dignissimos voluptas consequuntur sint ex.</li>
+			<li>Blanditiis maiores a voluptates, odit maxime sint consequuntur quod, totam atque enim velit illum repudiandae porro hic rerum aliquam quam, possimus! Voluptas, ducimus obcaecati reiciendis pariatur excepturi nulla quos magni!</li>
+			<li>Velit blanditiis, tenetur qui, laborum nobis iste tempore sit, nam cumque recusandae nisi aperiam eum incidunt optio vel illo non, officiis facere. Aliquam facilis suscipit sequi quos, corporis odit dignissimos?</li>
+			<li>Ipsum laborum soluta amet officiis nihil, maxime itaque et blanditiis ab praesentium, aliquid illum laboriosam dolorum molestiae! Aliquid doloremque veniam voluptatem sint deserunt non, accusamus dicta! Voluptatum facere possimus explicabo?</li>
+			<li>Nemo aperiam tempora, molestiae ex, nihil alias temporibus facilis esse expedita doloremque voluptatum, magnam. Assumenda obcaecati, quasi odit et delectus necessitatibus at iste veritatis libero id! Nisi, voluptas suscipit tempora.</li>
+			<li>Quaerat, sed aspernatur inventore ipsam voluptate ab, explicabo aut temporibus vitae debitis dolorum molestiae dignissimos voluptas perferendis labore dolore eum porro cum! Labore possimus dignissimos, quam cum in qui aspernatur.</li>
+			<li>Fuga, ex tempora tempore, asperiores ducimus quos enim rem in facere facilis aut maiores quasi ab, doloremque cupiditate ullam. Enim dignissimos, minus eaque at atque sint eum velit similique quidem.</li>
+			<li>Officia iste sit ea. Vero illum incidunt excepturi, et. Sint accusantium quibusdam id quae molestias laborum illum veniam nesciunt quasi officiis incidunt ullam consectetur eligendi perferendis, ad qui magnam ut!</li>
+			<li>In facere, deserunt unde eligendi esse quod, perferendis cupiditate delectus nostrum possimus assumenda quasi? Quis aliquid vel facilis, dolorum quos sapiente. Unde, ipsa voluptate ipsam harum, consequatur praesentium similique rerum!</li>
+			<li>Nobis consectetur fuga ipsam doloremque quo voluptates aliquam impedit hic totam commodi repudiandae dignissimos voluptatibus architecto, non ad, amet dolor explicabo, nulla ratione quia! Quae explicabo dolore aspernatur rem tempore?</li>
+			<li>Sapiente qui, incidunt ab, animi molestiae quia ad officiis similique provident officia quod. Veritatis ab odio eos illo dignissimos blanditiis, perferendis autem qui aperiam tempora, alias nam, vel voluptas minus.</li>
+			<li>Porro excepturi voluptatem eum, neque voluptas dolor veniam rerum! Dolorem explicabo repellendus, odit porro consectetur, sequi commodi. Explicabo aut deleniti recusandae, non obcaecati illum adipisci aliquam ex quibusdam, doloribus sit?</li>
+			<li>Optio praesentium fugit unde quaerat cupiditate assumenda ipsum, molestiae veniam iusto facilis eligendi quo accusamus saepe eaque fuga similique alias rerum quis? Amet, et. Neque molestiae ab voluptatum mollitia accusamus.</li>
+			<li>Quas, voluptate, non! Aspernatur distinctio eaque ratione, accusantium odio dolor quia, odit aperiam harum molestiae excepturi cupiditate vero libero labore, nesciunt facere esse voluptates minima suscipit, inventore reprehenderit fugit. Saepe.</li>
+			<li>Sequi expedita aliquid beatae. Corporis quo autem alias quis distinctio nesciunt voluptate quisquam illo consectetur fugit cumque veniam aperiam qui repellendus iste, reiciendis earum incidunt saepe magni mollitia labore odit.</li>
+			<li>Dicta maxime facere quo laboriosam voluptates vel omnis et necessitatibus, tenetur harum possimus officia ipsum at. Tempore, libero quam quia, asperiores, minus eius facilis cumque deleniti delectus quod praesentium, dolor.</li>
+			<li>Unde fugiat quidem mollitia doloremque, reiciendis doloribus voluptatibus officia aspernatur quas ea velit omnis sint quaerat cum, tempore. Obcaecati laudantium temporibus officia asperiores expedita quis commodi natus pariatur sunt! Labore?</li>
+			<li>Accusamus culpa, architecto reprehenderit consequuntur ratione sed, ex est laboriosam eaque adipisci itaque soluta error, ipsa aperiam accusantium voluptatum omnis, odio nobis voluptatem dolorum. Velit magnam, commodi debitis neque officia.</li>
+			<li>Soluta, molestiae, aperiam! Repellendus sapiente, quod velit aliquid dolorem quo ad, rerum quidem labore cum doloribus facere doloremque mollitia harum, at atque delectus tempore incidunt adipisci! Suscipit repudiandae quam natus.</li>
+			<li>Placeat quibusdam dolorum iste tempore laborum sed, rem, quasi cum sunt, veniam aspernatur sint et nulla beatae labore eius. Laudantium eum magnam deleniti nemo natus maxime eius neque libero. Repellat.</li>
+			<li>Id perferendis labore, sapiente suscipit at, tenetur minima delectus magnam corporis quaerat unde ex et! Officiis officia illo neque ullam libero, error dolorum autem obcaecati harum fugiat eum repudiandae earum?</li>
+			<li>Dolores dolore, facere obcaecati fugiat maiores velit. Illo dolore enim commodi hic. Libero, ducimus molestias labore et fugiat provident quis pariatur similique sed impedit culpa blanditiis cumque incidunt, cupiditate eius.</li>
+			<li>Incidunt voluptates nam ad, nihil voluptatum ab culpa. Officia pariatur, cumque omnis quaerat nihil, nesciunt quasi facere voluptatibus dolorem quia. Quas eum voluptatem, quos praesentium aut iusto omnis vel laudantium?</li>
+			<li>Reiciendis earum dignissimos nam hic? Laborum nulla suscipit iure. Excepturi fuga, velit dolorem amet impedit maiores ut a sed saepe ipsa cum laboriosam quae deserunt quasi dolore commodi eligendi odit!</li>
+			<li>Nostrum odit architecto beatae, sed in delectus corporis, veniam harum fuga dignissimos et. Omnis repudiandae enim impedit id. Autem voluptates delectus molestiae aut veniam repudiandae rerum, eum accusamus molestias laudantium.</li>
+			<li>Tempora eligendi alias, nesciunt a. Et saepe nam nemo molestias, illo voluptates inventore maiores? Suscipit quaerat consectetur voluptate ratione, quos laborum perferendis voluptatem deleniti soluta, nam, eius animi voluptatum, explicabo!</li>
+			<li>Eius in placeat esse reiciendis veniam. Laudantium sequi totam sint a soluta necessitatibus nihil nemo temporibus delectus assumenda, quaerat modi ipsam quam fugiat quidem molestias beatae. Esse harum fugiat, beatae!</li>
+			<li>At iste itaque quia, repudiandae culpa repellendus nemo. Ratione quas consectetur tempore obcaecati nulla, esse doloremque, perferendis voluptas fuga quisquam iste quae rerum impedit nisi fugiat? Illo temporibus mollitia, iure!</li>
+			<li>Minima asperiores laborum eligendi ex saepe! Assumenda expedita laborum soluta, harum blanditiis temporibus animi, ad fugit. Deserunt nemo quibusdam quam ex atque, autem minus, modi eos, vel nisi animi repudiandae.</li>
+			<li>Libero tempora aliquid dolor, est commodi quas quos animi deserunt eum suscipit ab ullam asperiores praesentium labore magnam veritatis unde aut illo maiores voluptatum itaque at aperiam quaerat. Deserunt, vitae.</li>
+			<li>Obcaecati repellendus sit, quisquam quidem ipsam hic rerum eos! Molestias consequatur dignissimos repellendus eius, culpa quo ducimus magni, eaque obcaecati illum fuga exercitationem minus vitae. Vero, consectetur saepe illum rerum!</li>
+			<li>Omnis necessitatibus aliquam vel culpa, dignissimos sint excepturi assumenda. Molestiae rerum sequi veritatis, obcaecati magnam, dignissimos, debitis odio soluta nemo repellendus distinctio earum consequuntur! Obcaecati quasi veritatis tempore debitis voluptatem.</li>
+			<li>Accusamus numquam quos blanditiis soluta eius quae incidunt fuga quasi magnam atque, animi, unde beatae libero eligendi ipsum porro temporibus officiis sapiente nesciunt, explicabo ratione natus iusto assumenda. Commodi, mollitia.</li>
+			<li>Inventore rem at, incidunt ratione voluptatum repudiandae, assumenda voluptates quas nobis minus delectus! Quas sit, fugiat dicta molestiae id in. Accusamus laboriosam vero neque incidunt id adipisci illo voluptatem repellat.</li>
+			<li>Molestias dicta tenetur dignissimos? Quaerat quibusdam vero facilis tenetur natus necessitatibus nihil, fugiat porro dicta cumque provident perspiciatis error obcaecati non ex aperiam illo, aliquid voluptatem. Ea saepe hic velit.</li>
+			<li>Et debitis optio facilis ut, a, adipisci dignissimos. Non, in. Fugiat perferendis temporibus, ipsam dignissimos cupiditate, quisquam quod eaque pariatur non numquam officia cum omnis possimus exercitationem vero ratione quam.</li>
+			<li>Provident magnam, minus vero quibusdam adipisci possimus. Iusto vitae, saepe obcaecati adipisci quidem modi, animi delectus est enim. Quisquam omnis quas, hic nam dolore dolor velit cum enim, ut dolores!</li>
+			<li>Voluptatum nulla qui doloremque laboriosam veniam tempore iste dolorum eligendi, esse molestiae laborum possimus atque consequatur deleniti officiis, animi ducimus placeat dolores quas. Possimus quo autem, soluta explicabo. Officia, neque.</li>
+			<li>Iusto, quam at? Officiis eaque repellat expedita voluptates. Ipsam cumque ratione libero quibusdam non, accusantium mollitia voluptatibus architecto nihil laudantium quasi a velit, culpa earum eaque maxime veniam minima doloremque?</li>
+			<li>Beatae quis ipsa minima cum earum eos amet laudantium delectus perspiciatis obcaecati minus eligendi hic, odit. Mollitia commodi atque ab consectetur iusto, ipsa ducimus? Veritatis similique qui, repellat adipisci rerum.</li>
+			<li>Voluptates excepturi officiis, facilis perferendis odio maiores ex itaque adipisci saepe tempore earum unde rem dolorum quos optio ipsa, quibusdam! Tenetur neque, dolores quas cum reprehenderit! Aut itaque, pariatur velit?</li>
+			<li>Sed ea dolorum expedita temporibus eaque minus facere, ad et beatae vero obcaecati, labore eum nostrum consectetur repellat inventore? Animi reprehenderit sapiente, autem illo ducimus error reiciendis voluptates? Id, quas!</li>
+			<li>Vero nisi architecto impedit asperiores suscipit aspernatur ipsam perspiciatis atque ullam, mollitia illum, est explicabo obcaecati inventore corporis, consequuntur sunt iusto. Neque vel dolore alias ad, eius officiis? Nihil, veritatis.</li>
+			<li>Assumenda natus a dolores excepturi dolore ut perferendis, debitis cumque iure sed architecto soluta consequuntur, reprehenderit illum distinctio, beatae vero impedit dolorem consequatur. Voluptatum commodi quod in, aliquam, cumque nobis.</li>
+			<li>Quia illo quasi similique eius at aperiam labore saepe. Repellat modi voluptate vitae, vel similique magni ut. Quam dolor rerum itaque, velit cumque mollitia soluta illo quaerat repellendus! Natus, reiciendis?</li>
+			<li>Quia maiores perferendis eveniet optio consequuntur dolorem ab quaerat. Voluptate pariatur excepturi esse dolorem nostrum fuga? Facere corporis, soluta, illo nihil voluptate nisi ea est eaque vero modi blanditiis velit!</li>
+			<li>Voluptatum, excepturi asperiores nisi, dolores exercitationem quaerat. Doloremque omnis ad ex a, consequatur, odio. Enim eaque, soluta sint itaque possimus architecto praesentium perferendis nam, nobis ut, corrupti in dicta cum?</li>
+			<li>Minus consequatur nesciunt doloribus atque, voluptatum distinctio magni laboriosam! Reiciendis quos officiis vero illo, pariatur soluta obcaecati nisi unde facere natus eaque expedita praesentium dolorem, voluptas nihil vitae a. Ex.</li>
+			<li>Ex amet optio atque molestias vitae itaque earum error voluptatem reiciendis doloremque, exercitationem cumque consequatur asperiores eveniet. Quibusdam recusandae expedita quos iure. Cupiditate similique provident vel laboriosam ratione, eum dolore!</li>
+			<li>Animi quasi provident omnis laudantium alias possimus minima placeat nisi magni? Obcaecati perferendis, quidem laudantium libero ullam, sequi in nesciunt magni. Nemo deserunt et assumenda dolor provident, consequatur accusamus minima!</li>
+			<li>Consequatur veniam aperiam, similique amet voluptatum alias eveniet quae iure cumque, voluptatibus reprehenderit temporibus, aut ullam. Iure quas, reiciendis, repudiandae, esse consequuntur minima eos ab quo ut illo maiores tenetur!</li>
+			<li>Cum voluptatum tenetur obcaecati facere voluptas voluptatibus sequi quia voluptate ea. Consequatur hic repellendus vel asperiores optio unde, assumenda magnam et vitae obcaecati, distinctio? Laboriosam, molestiae hic! Reiciendis a, cum!</li>
+			<li>Corrupti facilis repellat aperiam qui quos possimus ipsum necessitatibus quidem pariatur ratione ad ex officia esse facere accusantium, suscipit autem reiciendis voluptates veritatis. Harum illo non omnis distinctio excepturi quibusdam.</li>
+			<li>Ut, natus voluptatibus veniam. At sit deleniti, pariatur eius doloribus soluta ratione! Corporis nemo magnam veritatis ipsam voluptatibus sequi eos sed consequatur odio maxime, possimus a sint, reiciendis fugiat nam.</li>
+			<li>Earum non reiciendis explicabo, iste officiis sit atque enim animi, modi architecto rerum facilis numquam veritatis. Magnam, deleniti, sapiente, dolorem neque labore excepturi inventore quo quos corporis voluptatem perspiciatis odit.</li>
+			<li>Error ipsa illum praesentium quod minus necessitatibus, consequatur. Vel dignissimos obcaecati magni. Ducimus ut odit, distinctio ad odio natus culpa maxime velit provident obcaecati, dicta error ullam voluptates officiis quia!</li>
+			<li>Rerum similique nobis, ullam magni totam praesentium reiciendis est id nisi recusandae corrupti delectus eius facere obcaecati, sint sit inventore! Qui commodi dolorem hic tenetur nihil nemo repudiandae inventore esse!</li>
+			<li>Id veritatis delectus vel voluptatum possimus tempora asperiores cupiditate ab quos rem amet provident sint soluta optio, corporis nobis facilis tempore repellendus quasi accusamus incidunt, ipsa quibusdam dicta. Rem, tenetur.</li>
+			<li>Dolores et adipisci, id ipsa sit iste labore. Accusamus suscipit, temporibus delectus alias similique ut! Ipsam similique blanditiis labore sunt, natus dolore tempore distinctio impedit quidem dolor! Nesciunt, quae, ut.</li>
+			<li>Laborum porro odio, temporibus ullam aliquam, incidunt dolores, officiis impedit voluptatibus possimus enim reprehenderit tenetur molestiae perspiciatis obcaecati placeat nihil quo. Harum, eos, repellendus! Ducimus molestiae, dolorum eum consequatur reiciendis.</li>
+			<li>Error similique aliquid laborum fugit, nostrum quisquam culpa debitis illo. Nisi, animi, officiis explicabo tempore ullam quis adipisci natus culpa, pariatur accusantium id ea. Harum aperiam iste porro sit, provident!</li>
+			<li>Modi magni, nemo minima. Modi eligendi quidem veniam laborum excepturi repellendus, facere fugit, id dolor pariatur aliquid ullam perspiciatis enim ipsum, eos necessitatibus repellat soluta voluptates vero cum ratione ipsam.</li>
+			<li>Officiis ad sint error nihil laboriosam, ratione deleniti dolorem iure voluptatibus atque explicabo odit, ducimus illo, tempora maxime architecto quidem! Aut velit molestias soluta eos, rerum voluptatum repudiandae earum, excepturi!</li>
+			<li>Fugit porro temporibus vel commodi non quibusdam mollitia est et iure ducimus eaque aliquid, repellendus ut assumenda ad sapiente, ea quia explicabo. Voluptatibus, maxime! Quibusdam repellendus doloremque facere, deleniti neque.</li>
+			<li>Sint earum sit at nobis asperiores voluptatum, expedita esse sequi saepe! Beatae non exercitationem soluta quaerat, laboriosam quibusdam ratione. Voluptatum accusantium nesciunt labore ipsa sed enim nobis quod nam asperiores.</li>
+			<li>Maxime ad perferendis, fuga beatae architecto doloremque. Ipsa magnam fuga magni et corrupti. Reprehenderit voluptatem dolorem dolores in nostrum cumque. Deserunt quas, aspernatur porro, veritatis quis consequuntur consectetur. Voluptates, eum.</li>
+			<li>Eaque eos, magni! Dolorem, ullam nesciunt amet, explicabo adipisci, dolore ea voluptas non mollitia, numquam sed? Nulla eligendi debitis vero doloremque velit iste veniam accusamus. Ducimus pariatur libero numquam. Blanditiis.</li>
+			<li>Reprehenderit doloribus temporibus et vitae provident aliquam nesciunt dolorem optio explicabo facere, distinctio sunt inventore quod, iusto recusandae sed error corporis. Alias itaque nihil dolorum mollitia quam impedit, dignissimos facere?</li>
+			<li>Temporibus reiciendis laborum facilis aspernatur fuga, dicta, quod impedit rerum nesciunt placeat amet praesentium odio delectus nam nisi ab similique, voluptas ex ducimus odit! Illo ipsam ipsa sapiente repellendus id.</li>
+			<li>Qui, mollitia molestiae alias eos, dolorem aperiam sint necessitatibus earum molestias, et ea velit error corporis fugit officia labore! Inventore architecto natus quisquam doloribus distinctio nemo error dolorum dolores tempora?</li>
+			<li>Aut animi dignissimos molestias sit velit! Maiores, dicta voluptates totam! Vitae voluptatum vero quaerat sequi beatae similique quam voluptatem eum obcaecati id voluptates hic dolorem, ipsa, amet iusto corrupti earum.</li>
+			<li>Quas temporibus quisquam ipsum. Neque quo nobis labore consequatur dolorem expedita aliquam et deleniti commodi amet tempora hic dolore, animi reiciendis est mollitia iste ut, ipsam. Voluptas, aspernatur rem maiores.</li>
+			<li>Eos, voluptates quibusdam debitis deleniti nihil rem odio inventore ab cumque magni similique nulla, deserunt accusantium doloribus sint quod possimus officia perferendis explicabo ipsum sed dignissimos laudantium, quo autem mollitia!</li>
+			<li>Neque doloremque consequuntur mollitia temporibus sint nostrum fuga placeat est reprehenderit odio, laborum commodi praesentium esse magnam sed recusandae? Labore voluptates voluptatum quo deleniti ut est illum, odit, vel non.</li>
+			<li>Enim at, cupiditate incidunt numquam quos, consequatur laborum possimus et nesciunt amet a, necessitatibus esse doloribus adipisci ratione nihil, quas repudiandae. Molestiae itaque ab ut excepturi amet, quasi, mollitia quod.</li>
+			<li>Voluptas totam eveniet corporis hic quo ea dolores voluptate magni molestiae sapiente, accusamus, debitis explicabo? Ad id facere sapiente aut, blanditiis doloribus, aliquid hic? Accusamus doloremque omnis atque! Expedita, voluptatibus!</li>
+			<li>Asperiores deleniti facilis id atque, ea harum? Magnam dolorum, adipisci modi excepturi fugiat repudiandae perferendis culpa quia nihil ut, provident laudantium. Odio debitis optio dolores aperiam dolore quae fuga incidunt.</li>
+			<li>Tenetur ullam, illo dicta non aperiam velit? Aliquid est vero consectetur sint nisi a, exercitationem. Odit sint nesciunt iure sed ea, amet ex quisquam voluptatibus. Nesciunt quasi laudantium, dicta mollitia.</li>
+			<li>Quo omnis velit neque dicta! Nihil expedita ex consequatur id vel quisquam dolorem nisi, explicabo dolorum. Molestias voluptatibus minus, recusandae, odio beatae harum porro ipsam natus officiis, dolor nobis magni!</li>
+			<li>Dolor omnis dolorum culpa nihil perspiciatis architecto illum ipsam repudiandae maiores quasi saepe voluptates vero sequi corrupti fugit deleniti ducimus officiis hic eum, id quisquam tempora reiciendis aut consequuntur sit.</li>
+			<li>Doloribus quos soluta voluptatum, tempore beatae magnam earum sunt eligendi quo vero! Ducimus a sequi, sit nemo recusandae nesciunt accusantium et mollitia ullam iusto facere fuga deserunt distinctio? Laudantium, nisi.</li>
+			<li>Cupiditate minima nihil quos reiciendis eveniet optio numquam dolores molestiae rerum maxime, sapiente, laudantium id enim ea adipisci molestias voluptas! At aut dolorem id, officia nesciunt modi, autem dolores accusamus?</li>
+			<li>Non eveniet, corrupti. Id excepturi optio facere, incidunt porro sint quo eius itaque ullam ab animi culpa nobis dolores sit tenetur neque, deserunt, ut impedit esse reprehenderit consequatur! Ducimus, sed.</li>
+			<li>Tempore ex et nisi odio at nihil delectus itaque natus fugit dignissimos deserunt quae hic dicta quisquam aspernatur, repellendus vitae perferendis deleniti iste iusto rerum, sapiente vel eius harum. Ea!</li>
+			<li>Molestias eligendi modi deleniti aliquam repudiandae unde dolorum harum nisi, consequatur laborum illo soluta neque aspernatur rem sunt, cum fuga dicta, voluptatem, minus! Aperiam error, distinctio consectetur ipsa cumque ex.</li>
+			<li>Iusto quia maxime nemo harum ut repellat! Voluptatum perferendis repellat ab! Recusandae eveniet amet exercitationem dignissimos placeat error, porro quasi voluptatem, incidunt sapiente, quis nam quo at atque velit expedita!</li>
+			<li>Tempora totam sit explicabo maiores ex necessitatibus nobis eaque rerum. Accusamus, perspiciatis! Ullam exercitationem minus illo cum voluptatem, repellendus magni sit autem velit, non, enim dolores. Nihil architecto, quidem illo.</li>
+			<li>Dolorem esse inventore cum dolores nobis consequuntur, ex maxime minus, magnam odio sit vero tempore. Sapiente laborum, tempore pariatur et, ipsum totam error recusandae incidunt veritatis cumque, quod itaque officia.</li>
+			<li>Optio pariatur reprehenderit voluptatibus soluta quam, veritatis veniam doloremque accusantium laudantium numquam quod aliquam ut corporis ipsum nostrum fuga molestiae ratione, autem laborum. Facere at cum ipsam, aliquid quibusdam a.</li>
+			<li>Quas, totam unde repudiandae magni necessitatibus, recusandae adipisci, aperiam esse minus porro cupiditate qui maxime, quam aliquam saepe velit voluptas blanditiis quae laborum expedita at? Vero est, laboriosam ipsa alias.</li>
+			<li>Possimus dolores consequuntur delectus magnam praesentium, hic ea consequatur! Architecto minima accusamus, laboriosam excepturi fugit, sint voluptatum ex eaque similique ut, dignissimos beatae. Voluptates perspiciatis eius distinctio cum, deserunt, labore.</li>
+			<li>Autem accusantium fugiat illum repudiandae quis velit inventore, illo tempora deleniti eaque aperiam temporibus! Consectetur incidunt illo, labore, saepe quasi hic placeat, suscipit obcaecati soluta officia quaerat eaque at. Similique.</li>
+			<li>Laboriosam ipsam, eaque eveniet dolores vel alias nemo sunt. Iste adipisci dolor corrupti harum qui impedit temporibus est vitae et, quibusdam itaque, beatae consequuntur, recusandae explicabo libero odit tempore repellendus.</li>
+			<li>Ullam dolorum, dolores nobis beatae itaque error optio id laborum velit, autem, quae neque nisi, obcaecati distinctio suscipit similique? Deserunt obcaecati blanditiis iste est iure quam aliquid sit dignissimos nulla!</li>
+			<li>Eveniet nisi ipsum similique sed corporis culpa. Sequi nam quibusdam esse assumenda eos. Soluta, fugit iusto, eius quod fugiat, qui deleniti velit quidem aspernatur iste voluptatum odit minima harum tempora.</li>
+			<li>Tempore ullam, repellat quibusdam magnam alias incidunt quae repellendus id aperiam error sapiente illum excepturi sint nulla, expedita perspiciatis animi minus dolorum corporis repudiandae illo. Quis ipsam eum impedit autem?</li>
+			<li>Ipsum pariatur officia ut sint illo ab dicta repellendus voluptates, consequuntur nisi voluptatem similique est ipsa maxime neque recusandae minus. Neque praesentium, accusamus libero sed incidunt sequi, qui autem quod!</li>
+			<li>Asperiores ducimus atque omnis fugit ut ex, error pariatur, cum ipsa deserunt labore vero voluptatum corporis maiores. Vero consectetur veniam nostrum animi unde, totam, reiciendis placeat, quia perferendis velit voluptates!</li>
+			<li>Sed molestiae sequi saepe neque inventore a quaerat vel assumenda voluptates, praesentium sit, odio, obcaecati consectetur deserunt similique cupiditate incidunt. Eaque consectetur corporis dolorum deleniti quo nulla voluptatibus facilis ea?</li>
+			<li>Quasi a vero qui cumque officiis repellat animi adipisci veniam voluptas id, laudantium beatae consectetur quos odit harum soluta iusto fugiat aspernatur inventore voluptatibus cupiditate in asperiores. Natus autem, eligendi.</li>
+			<li>Odit rerum, repellat nobis vitae ipsam et natus repudiandae minima explicabo modi. Accusamus adipisci laboriosam rerum expedita quos alias recusandae. Delectus deleniti dicta aut quia, natus iure ducimus quos ipsum.</li>
+			<li>Repudiandae maxime repellendus excepturi assumenda iste veritatis ad sint at, quas nostrum accusantium quidem mollitia, optio suscipit odit. Distinctio autem labore aut, id ex? Esse tenetur voluptates, deleniti ex quidem.</li>
+			<li>Magnam itaque, similique vitae ullam laborum fugiat doloremque quis ea eius nihil sint, reiciendis distinctio assumenda consectetur at eligendi omnis velit pariatur in quos ut impedit. Magnam ea impedit, quas!</li>
+			<li>Voluptates, soluta neque assumenda laudantium expedita numquam facilis fugit maxime fugiat rem saepe animi nam officiis harum doloremque, laboriosam, mollitia cumque. Facilis quidem exercitationem, recusandae sequi reiciendis deleniti ducimus dolorem.</li>
+			<li>Delectus dolore fugiat repudiandae voluptas, deleniti dolorum. Impedit, mollitia ab id architecto, odio voluptatum natus maxime. Ut vitae harum qui et magnam quasi, doloribus? Ullam consequatur mollitia ut harum sint?</li>
+			<li>Incidunt explicabo praesentium, soluta ea recusandae, maxime amet repudiandae et sit commodi pariatur minus molestiae doloribus. Omnis, soluta facilis unde odit. Quaerat sed, totam illo autem quasi eius voluptatem facilis.</li>
+			<li>Nostrum totam nesciunt a eos! Laudantium asperiores at, vel sed expedita in magni eligendi iusto accusantium minus repudiandae quisquam itaque, consequatur consectetur eaque doloremque quod tenetur. Atque eligendi exercitationem maxime?</li>
+			<li>Officia architecto nobis ea ipsum, porro nam suscipit aperiam facere culpa iure nostrum inventore ratione ut. Voluptas delectus quod repudiandae, ab aut deserunt repellat aspernatur. Veniam libero, voluptas at eos.</li>
+			<li>Praesentium consequatur molestiae assumenda rerum iusto debitis perspiciatis, consequuntur, saepe fugit officiis officia est cum! Officiis, quae repellat, possimus, est nobis veniam quisquam ab a repudiandae maxime consequatur rem molestias.</li>
+			<li>Dolores est molestiae fuga possimus ratione vero facere natus inventore. Repellat doloremque culpa optio minima magni laboriosam dignissimos nulla dolores ipsam cum inventore dicta rerum, soluta eos excepturi aliquam debitis.</li>
+			<li>Assumenda est numquam asperiores in blanditiis dolorem sit ex, ipsam. Tempore sunt magnam quisquam rerum voluptates quos iste, explicabo eius. Enim odio neque, eligendi, illo blanditiis nihil corporis voluptas eum!</li>
+			<li>Incidunt hic, obcaecati ratione vel a. Quod culpa velit praesentium quisquam accusantium similique tenetur tempore! Id laboriosam laudantium hic iusto consectetur dicta, eaque provident eum, beatae, nam perspiciatis suscipit rem?</li>
+			<li>Ad temporibus eum debitis vitae at harum veritatis, molestias. Incidunt non quo fugit assumenda pariatur necessitatibus repudiandae architecto quam, ea laudantium veniam tempora odio recusandae, laboriosam expedita praesentium asperiores rerum.</li>
+			<li>Provident amet facere, corporis molestias laborum atque saepe ducimus cumque dolorum asperiores possimus omnis reprehenderit id animi necessitatibus tenetur error porro qui non tempore minima! Quas vel reiciendis, cumque deleniti!</li>
+			<li>Eius autem atque corrupti quasi quas magnam, molestiae, repellendus doloribus fugiat iste officia dolores facere sed molestias minus reiciendis quo adipisci, architecto officiis. Quibusdam ratione adipisci facilis, quae natus facere.</li>
+			<li>Earum voluptas mollitia necessitatibus aperiam aspernatur asperiores, deleniti assumenda, amet. Aut est ut minima tempora quasi, explicabo totam quisquam magni nobis. Non sapiente beatae quibusdam quas soluta eveniet, modi possimus.</li>
+			<li>Quidem, deserunt, natus amet impedit officia iure atque voluptatem. Saepe eius sit temporibus totam, minima atque magnam vitae pariatur quo! Sint rerum, dignissimos, sit beatae et iure at laudantium modi!</li>
+			<li>Asperiores eligendi, optio ducimus iure excepturi fugit itaque, nemo beatae inventore architecto vitae aliquam minus animi et libero ex consectetur quos! Harum, ipsum, placeat. Voluptatibus dolorum, sapiente. Non, cum suscipit.</li>
+			<li>Esse dignissimos labore sit error, distinctio, blanditiis hic voluptates, dolore aliquam non omnis itaque officia, nemo quam iusto deserunt molestias sapiente amet sunt. Aspernatur repellendus explicabo similique aliquam porro assumenda?</li>
+			<li>Dignissimos suscipit pariatur dicta, earum, porro reiciendis iusto nihil quas possimus fuga facere, amet sequi atque nam temporibus odit voluptas aperiam consequatur. Aliquid repellat, soluta ad aut possimus facilis cupiditate!</li>
+			<li>Nemo fuga, consequuntur sequi doloremque ipsa neque hic esse provident commodi eum! Ab laborum sed facilis, est porro, ipsam perspiciatis rerum, hic ipsum nesciunt enim aliquam dolorem repellat odit, saepe.</li>
+			<li>Laborum, hic corporis. Omnis, officia porro illo labore sed adipisci delectus. Omnis atque tenetur vitae modi, velit nostrum libero minus possimus, veniam laborum adipisci, illo accusantium voluptate obcaecati incidunt sunt.</li>
+			<li>Fugit facere, reiciendis consequatur culpa, nesciunt accusantium totam molestiae voluptatem voluptatum debitis sint officiis pariatur aut eos nisi assumenda hic vero in delectus! Deserunt officiis repellat, temporibus iste, maiores mollitia.</li>
+			<li>A delectus, temporibus labore fugiat corporis at cum aspernatur explicabo fuga modi similique hic sit minima deserunt dolorum quaerat cupiditate. Magni harum voluptate nam, dolore vitae modi repellat quidem perferendis.</li>
+			<li>Deleniti quidem quod repudiandae perferendis veritatis dolorum, beatae voluptates tempora aut aspernatur illum optio, rem, voluptatem repellendus porro ad corrupti minus voluptate iusto. Incidunt illo porro laborum ducimus nisi. Dignissimos.</li>
+			<li>Dolor harum iste debitis, itaque, voluptatem dolorum dicta accusamus veritatis voluptatum voluptatibus quisquam aliquam soluta porro obcaecati. Expedita eligendi quisquam quibusdam explicabo id, nemo totam in dicta, ipsum sit, incidunt.</li>
+			<li>Optio ad assumenda unde, tenetur obcaecati ut magnam. Cupiditate sequi assumenda harum pariatur deserunt aliquam vero aspernatur rerum ad minus? Amet molestias officiis nemo aliquam sit, mollitia delectus iure dolores.</li>
+			<li>Temporibus blanditiis autem illum, quam, laudantium saepe consectetur nostrum ex ad, rerum eveniet reprehenderit animi aliquid quos corporis asperiores quibusdam nobis. Corporis saepe obcaecati officiis, est sapiente amet maxime aperiam?</li>
+			<li>Temporibus exercitationem quod, ipsam voluptatem? Ea eaque vel iste doloremque quod nostrum a voluptate ducimus, reprehenderit nobis facere quam assumenda distinctio amet numquam corrupti expedita atque voluptatibus ratione ut blanditiis.</li>
+			<li>Commodi, maiores nemo tempora praesentium doloremque, veniam sapiente repudiandae ut culpa sit et eveniet atque, ipsam amet. Doloribus blanditiis quod debitis mollitia commodi eum, ab eligendi esse eius facilis id.</li>
+			<li>Rem itaque saepe repellat quasi neque voluptatem, debitis facilis fuga deleniti, perspiciatis. Numquam consequatur, sit enim natus voluptate quae esse doloremque. Placeat quae facere totam laudantium amet adipisci maiores harum!</li>
+			<li>Harum totam perferendis ratione animi consectetur inventore magnam explicabo quis itaque laboriosam, maiores illo voluptate beatae. Pariatur, ducimus. Voluptates, veritatis voluptatibus quidem perferendis aliquid labore error quis voluptas saepe dignissimos.</li>
+			<li>Sunt dignissimos similique odit nobis quasi velit soluta, vero eius alias aliquam voluptas cumque beatae voluptatibus, assumenda veniam, porro necessitatibus non, perspiciatis laborum. Pariatur, eligendi. Omnis vel expedita architecto natus.</li>
+			<li>Mollitia qui saepe non odio voluptas soluta, quis cupiditate repellat accusantium natus asperiores ut earum aspernatur doloremque officiis, nemo beatae possimus delectus explicabo ad! Facilis id esse labore, quaerat! Magni.</li>
+			<li>Delectus quo quae nam ipsam, beatae suscipit vero in ratione optio architecto modi, eaque voluptas dolore earum illum asperiores nesciunt eum quas aliquam facere sequi iure ipsum. In, molestias, earum!</li>
+			<li>Voluptas itaque aspernatur in illo est qui, ad fugit vitae ipsa repudiandae, expedita dicta voluptates laudantium omnis, eos repellat accusamus nisi! Ut nostrum eum voluptatum harum ratione quae temporibus laboriosam.</li>
+			<li>Nihil cupiditate blanditiis ab odio ea quae totam, dolores sunt, eos rerum aperiam nisi accusamus at, quis, odit enim? Dolorum numquam repellendus eius in atque vitae voluptatum aperiam sunt alias?</li>
+			<li>Dolores dolor, nobis repudiandae dicta quasi iusto sed natus beatae neque explicabo quibusdam ipsam, magni voluptas debitis voluptatem obcaecati sit nisi quaerat nulla exercitationem eaque doloremque amet. Ut, numquam, temporibus.</li>
+			<li>Consequatur illo, maiores, doloribus eum pariatur consequuntur velit, commodi qui nisi, numquam dignissimos dolores cum. Aut officia asperiores esse, alias veritatis ipsa possimus eum nesciunt laborum animi, recusandae facilis, incidunt.</li>
+			<li>Possimus odit, suscipit cum fugiat distinctio asperiores molestiae atque eaque, totam facere impedit! Deleniti labore modi, perspiciatis consequuntur autem alias commodi nihil incidunt ut voluptatibus. Doloribus corporis id totam. Facilis.</li>
+			<li>Accusantium autem inventore saepe vel labore commodi consequatur est ea, asperiores nam, natus ipsa. Architecto, eos sunt impedit libero rem reiciendis distinctio a atque, omnis optio non quos dolorum accusantium.</li>
+			<li>Minima tempora sed nulla, sint tempore. Dolorem, aspernatur ipsum repellendus quia dignissimos quam maiores. Veritatis voluptatum asperiores, sint at porro consectetur, nostrum voluptates odio mollitia, voluptate saepe unde accusamus consequuntur.</li>
+			<li>Doloremque perferendis, laboriosam quod dicta facere delectus esse magni, sint! Vitae mollitia veniam quis laborum ipsum distinctio est! Pariatur, vero, nisi. Impedit ratione numquam, doloremque nostrum officia exercitationem, pariatur nihil!</li>
+			<li>Adipisci aperiam rerum inventore. Magni cupiditate at obcaecati neque hic libero itaque soluta dolores ullam explicabo illum, sint eius maiores veritatis quibusdam quia. Animi a, beatae nemo blanditiis explicabo quam.</li>
+			<li>Qui magnam nesciunt et nulla labore harum, aliquam aliquid minus! Ipsum amet excepturi, velit quibusdam ullam explicabo voluptatum expedita reprehenderit quam voluptates beatae nostrum fugiat, quia possimus id nobis eum.</li>
+			<li>Fuga id ad nisi tempora sit consectetur maiores delectus praesentium, quia eius eum consequatur quos, quibusdam neque aliquam dolores aliquid adipisci facilis minima, consequuntur, dolore ratione repellat tenetur. Nihil, deleniti.</li>
+			<li>Natus asperiores, praesentium animi atque minima ducimus earum deleniti aspernatur vitae incidunt quod ipsa laborum, est ut, dicta quas consequuntur ipsam aut numquam accusantium voluptatibus a adipisci? Amet dolorum, at.</li>
+			<li>Vel numquam, at inventore cupiditate ab officiis odit cumque alias iure animi dolorum fuga perspiciatis placeat sunt pariatur nisi eius, vitae quisquam! Unde beatae eligendi eveniet, esse provident iste, aliquid!</li>
+			<li>Autem vel eligendi, reprehenderit neque quos placeat commodi, nulla libero, laboriosam cum quam, earum minus ipsum ullam! Maiores, quidem cupiditate optio commodi perferendis aliquam unde quasi delectus enim expedita assumenda.</li>
+			<li>Consectetur sint perferendis quae, repudiandae asperiores, explicabo ipsa ullam, necessitatibus atque distinctio cupiditate cumque dicta reiciendis pariatur numquam inventore quisquam optio. Deserunt atque quam earum eum quisquam ducimus maxime molestiae?</li>
+			<li>Beatae dolore aut iusto aspernatur veritatis, sunt aliquam totam, qui laudantium quisquam possimus accusantium repellat officiis recusandae cum. Veniam vitae nisi nesciunt ducimus placeat modi maiores pariatur adipisci tempore similique.</li>
+			<li>Dignissimos nulla doloremque veritatis error fugit laboriosam nobis aspernatur inventore. Doloremque voluptatem quibusdam ad rem, cum aliquid labore repellendus tempora quam quo porro. Aspernatur nulla facere blanditiis, officiis! Omnis, aut.</li>
+			<li>Mollitia ipsam delectus neque consequuntur animi, a quis quisquam placeat, velit eum distinctio tempora recusandae quas. Labore dolore, voluptates, dignissimos aliquam dolor animi necessitatibus fugit, esse ipsum enim veritatis laudantium.</li>
+			<li>Quisquam ratione quo libero culpa ad dolorum, ut quas sint aut asperiores nostrum eos aspernatur vero quod id nemo quidem iusto doloribus mollitia maiores suscipit, architecto veritatis distinctio aperiam dolorem.</li>
+			<li>Quo eveniet, voluptatibus. Aut rerum quia voluptas nisi accusantium, numquam qui est! Error eligendi officiis saepe earum, dolorem nemo architecto, eius dolor alias recusandae possimus expedita iure, iusto ab aspernatur.</li>
+			<li>Harum soluta repudiandae cum ab ad maiores, illo itaque repellat dolorem nisi inventore culpa autem quasi placeat! Non eos vel excepturi accusamus porro, harum ipsum eligendi eius mollitia! Expedita, cumque.</li>
+			<li>Quibusdam magni architecto fuga quaerat deserunt officiis est soluta ex ipsam iure deleniti voluptatem aliquid tenetur eligendi, impedit quis accusantium quo debitis, recusandae hic, alias sequi reiciendis dolore. Odio, dolore.</li>
+			<li>Accusamus cum eum, minima deserunt dicta ullam aperiam animi temporibus placeat quos tempora! Eveniet atque repudiandae, nulla! Tenetur, quas rem quam optio et. Beatae tempora id optio, corporis voluptate, corrupti.</li>
+			<li>Doloremque aut fuga, quo odit asperiores veniam molestias reprehenderit rem omnis debitis ut, itaque iste amet quidem. Libero ratione, soluta, labore vitae nulla nobis! Hic id illo, facilis voluptatem ullam!</li>
+			<li>Cupiditate ut inventore corporis fugit minima pariatur aliquid tempora repellat dolorem. Aliquid porro, possimus dignissimos magni. Aut porro iure saepe similique odit ducimus soluta sed eum dolorum ea, culpa deserunt.</li>
+			<li>Ullam quis ipsam voluptates aliquam provident quaerat nostrum, dicta, maiores, eius sed quos similique. Recusandae nam magni, nihil eos debitis maxime adipisci aut quod ipsa dolore. A, officia amet quasi.</li>
+			<li>Reiciendis atque error architecto tempora repellendus sequi, eveniet laboriosam! Molestias maiores aspernatur labore harum eaque perferendis aperiam aut, necessitatibus reprehenderit suscipit, magni. Sint rem molestiae, eos, aut optio iste vel!</li>
+			<li>Distinctio, laboriosam atque, dolore sit incidunt odio unde quisquam dolores adipisci, vitae voluptas voluptatem. Delectus similique suscipit, cupiditate aperiam veritatis? Tempore quo ratione commodi? Dolor libero unde, excepturi eveniet adipisci!</li>
+			<li>Earum, molestias fugiat eos assumenda modi voluptatibus libero, dicta molestiae id expedita unde recusandae. Voluptatibus, error iure est consequatur quod odio impedit eveniet cupiditate mollitia labore, placeat, dolorem nostrum iste.</li>
+			<li>Minima officiis possimus corporis qui voluptates modi eaque libero nostrum aspernatur delectus? Odio ratione qui assumenda pariatur deserunt cupiditate explicabo, vel eos facilis ea id sit, sed, modi iure. Animi.</li>
+			<li>Voluptatum in, exercitationem culpa sint praesentium molestiae consectetur repellendus asperiores perspiciatis, quas aliquid pariatur ducimus magnam. Aperiam, iusto omnis quos quisquam deserunt id, perspiciatis. Obcaecati nulla provident aperiam cum iusto.</li>
+			<li>Quibusdam, corrupti? Quo odio fugiat nam hic distinctio nihil, veniam ratione nulla sint eveniet corporis inventore repudiandae dignissimos reiciendis officiis tempora, iure numquam aliquam. Neque hic, suscipit maxime sapiente provident!</li>
+			<li>Consectetur fugiat assumenda, ut porro doloribus inventore nemo minus blanditiis sit veritatis repellat et suscipit error odit quidem ea temporibus enim. Magni dolorem quo laudantium in ex cum inventore optio!</li>
+			<li>Perferendis cum distinctio eaque atque id provident corrupti repudiandae impedit, doloribus nam mollitia, nisi culpa porro inventore voluptates. Animi neque nemo perspiciatis adipisci obcaecati dignissimos ea. Culpa aspernatur maiores enim.</li>
+			<li>At distinctio vel suscipit sapiente recusandae rerum, molestiae dolorem rem nostrum, quisquam quibusdam nam animi. Totam atque possimus iusto inventore sed ducimus quas reiciendis. Cupiditate quasi perferendis modi consectetur sint!</li>
+			<li>Cupiditate, sapiente delectus quae optio iusto, ex fuga illum, unde obcaecati explicabo praesentium cum impedit dolores similique ipsum accusantium. Temporibus quos autem, beatae eos pariatur minima nam perspiciatis unde ipsam!</li>
+			<li>Cumque incidunt minus illo iure dolorem labore, ab at velit modi ipsam rem eos quod minima molestias fugiat praesentium nemo voluptates qui natus magni accusantium magnam. Error officia, labore nulla?</li>
+			<li>Officia at, vel explicabo expedita nesciunt fugit pariatur dolore error possimus commodi asperiores consectetur sint, quae sequi autem eligendi ab incidunt quaerat natus. Placeat, sed quos neque quia dolorum dicta.</li>
+			<li>Totam corporis sed error, soluta quisquam assumenda aliquam animi ex maxime maiores commodi tempore dolorum asperiores, tempora modi libero autem tenetur voluptate quae reiciendis excepturi aut? Nostrum vero et architecto.</li>
+			<li>Delectus expedita, repellat voluptate non magnam. Labore quisquam tempora at minima doloribus numquam exercitationem corporis necessitatibus inventore, consectetur accusantium doloremque cumque, aliquam repellat mollitia ea eius ab deleniti commodi amet.</li>
+			<li>Velit fuga autem reiciendis assumenda, magni amet aspernatur eum praesentium, quo, sapiente dolore natus quod esse est ea nihil odio. Eligendi minima aliquam libero voluptatem ratione quisquam adipisci alias dolore.</li>
+			<li>Aliquam eum sapiente nemo dicta. Pariatur repellat iste porro voluptate praesentium omnis, vitae nisi facilis expedita ad rem doloribus, dignissimos sapiente quos reprehenderit quod reiciendis totam qui aperiam quisquam aliquid?</li>
+			<li>Nesciunt illum neque rem eos, repudiandae magni tempore asperiores ab expedita quos, voluptas debitis quae cupiditate suscipit laudantium quia eaque esse ipsam sint vero! Autem fugiat, eum doloribus atque incidunt.</li>
+			<li>Doloremque quaerat illum voluptatum, dolor assumenda esse blanditiis quo, suscipit ullam laboriosam eum repellat distinctio sit dolore nemo minima accusantium, numquam labore. Tenetur quo, tempora molestias vero ut laboriosam. Officia.</li>
+			<li>Sint, minus, deserunt? Blanditiis esse deserunt praesentium atque, harum tenetur natus, ex odit unde sed repellendus, corrupti nesciunt explicabo voluptas. Minima laboriosam quisquam optio corrupti perspiciatis suscipit sed exercitationem, hic.</li>
+			<li>Quae ducimus quisquam at, minima cumque quod optio accusamus, ex accusantium obcaecati aliquam magni asperiores dignissimos eius omnis perferendis explicabo id sed qui blanditiis tenetur labore officiis! Vitae, laudantium, ratione.</li>
+			<li>Nulla quia suscipit, saepe porro repellat ratione beatae molestiae, a voluptatem cumque fuga temporibus, accusantium laudantium necessitatibus laboriosam et. Eligendi laborum, aliquam voluptate nemo in, illum impedit provident optio necessitatibus!</li>
+			<li>Animi qui atque libero, totam facere perferendis cumque fuga, optio vero eos et odio commodi repellendus adipisci? Deserunt magni, exercitationem rem harum provident repudiandae sed quas hic, vitae, fugit delectus.</li>
+			<li>Commodi deleniti perferendis sint amet quos, aut recusandae, sit, incidunt officiis doloremque eaque. Velit sed corporis iste perferendis, fuga cum temporibus iure facilis totam inventore, illo ut itaque explicabo incidunt?</li>
+			<li>Voluptates iure omnis similique, vitae neque id modi. Itaque officiis nostrum, ex vel laboriosam! Molestiae nostrum quos expedita ratione porro, nihil sequi pariatur repellendus modi tempora ullam quisquam repudiandae veritatis.</li>
+			<li>Adipisci sequi temporibus harum similique saepe pariatur, corporis explicabo non repellendus, quasi dolores illum neque facere vitae. Voluptatem explicabo, quasi tempora cumque fugit, quia deleniti expedita vero dolorem, adipisci provident!</li>
+			<li>Quibusdam officiis, magnam a. Cupiditate repellat qui aperiam, error consectetur harum reiciendis non, perspiciatis autem ea provident maxime dolorum sit eius sed deleniti explicabo debitis id sapiente amet laboriosam nulla.</li>
+			<li>Reprehenderit incidunt accusamus, exercitationem odit assumenda enim quaerat odio consequatur rem tempore qui earum cum quas nobis quod quia laudantium itaque quis. Accusamus obcaecati consequuntur error assumenda delectus maiores nemo.</li>
+			<li>Quod dolores, incidunt, error expedita assumenda exercitationem officiis doloribus corporis suscipit pariatur atque cumque odit officia aspernatur. Incidunt aut magni nostrum, dolor ipsum! Totam, natus, eligendi. Aut, fugit, tenetur! Dolore!</li>
+			<li>Ipsam, nobis, consectetur! Quibusdam, autem vero! Explicabo minima obcaecati sequi at officiis sunt quaerat suscipit, ex dolorem error id tempora, repudiandae deleniti ipsum incidunt, quis vero itaque libero. Sapiente, fugit.</li>
+			<li>Ad odio voluptatum illo, consequatur atque, incidunt sit quos et dolorem fugiat ratione error neque voluptas obcaecati! Consequuntur explicabo placeat sapiente ratione cumque. Dignissimos fuga, minima ut voluptatem adipisci quae!</li>
+			<li>Saepe quis doloribus non praesentium unde cum, iusto animi aut, ad, ipsam inventore cupiditate, assumenda omnis distinctio numquam. Blanditiis sint, fugit neque omnis iure id temporibus vel odio explicabo nisi.</li>
+			<li>Culpa, eos, excepturi! Autem molestiae dolore velit beatae impedit reprehenderit, veritatis nobis aut illo laborum labore! Perferendis dolor doloribus ab vero dolorum dolorem repellat suscipit nihil, voluptate excepturi soluta voluptatem?</li>
+			<li>Esse ipsam, beatae dolore earum doloremque reiciendis praesentium amet accusantium? Dolor sapiente et non, molestias magni explicabo quae rerum, sequi architecto magnam, voluptates facilis quaerat. Blanditiis cupiditate dignissimos numquam nobis.</li>
+			<li>Hic nulla saepe est ad, atque, a animi fuga, doloremque temporibus magnam voluptatum consequuntur? Adipisci minima odit incidunt inventore nam alias quidem aspernatur sequi, cupiditate! Excepturi, eaque labore rerum voluptatum!</li>
+			<li>Suscipit dolorum eius iure nemo vero consectetur, excepturi ad ipsa earum doloremque voluptates. Incidunt fugiat ipsum animi, aut voluptates architecto quisquam omnis reprehenderit laboriosam modi tempore atque. Blanditiis debitis, excepturi.</li>
+			<li>Perferendis et quis, iste, qui ullam explicabo molestias. Nostrum placeat, dolore dolor molestiae excepturi, similique at voluptates? Minus odio deserunt nobis, adipisci quia debitis dolore qui temporibus officiis, atque vel.</li>
+			<li>Aspernatur ea vero eius saepe perspiciatis culpa, aliquid exercitationem impedit deleniti, nobis doloribus voluptatum possimus quam cumque! Fuga asperiores dolor quas, id sit sed aperiam, laudantium libero amet, quasi autem.</li>
+			<li>Eius laboriosam totam perferendis nobis in nam distinctio illo corporis soluta aliquid id ipsa, tenetur maxime tempore minus accusamus ullam repellat iusto delectus nisi magnam. Totam qui quo ad blanditiis.</li>
+			<li>Esse dolores fugiat at veniam labore commodi, assumenda atque molestiae nostrum voluptate doloribus, sunt quod illo dolorum ullam neque nesciunt? Alias ipsam sint assumenda recusandae architecto nobis nulla nam deleniti.</li>
+			<li>Animi possimus eligendi delectus rem libero velit temporibus blanditiis repellat reprehenderit vel, eius illum pariatur a fugit error dolorem neque culpa iste modi totam molestias cupiditate. Vero fuga dicta, ut!</li>
+			<li>Dolores officiis temporibus quaerat, nam commodi saepe eius nesciunt impedit. Reprehenderit distinctio labore delectus, sequi, ipsum odio voluptatibus incidunt iusto illo accusantium molestiae tempora dolore eveniet minima voluptatem pariatur blanditiis?</li>
+			<li>Animi cupiditate iste consequuntur sit ipsam. Laborum recusandae totam odio voluptates ipsam architecto tenetur asperiores, quos possimus, nemo pariatur aliquam exercitationem et voluptate qui blanditiis sint veniam quibusdam commodi numquam!</li>
+			<li>Ea modi atque voluptas ratione natus quod dolor commodi explicabo illo voluptatibus molestiae harum maiores magni quidem, unde officia, neque aspernatur consequatur. Quod nobis, exercitationem maiores sapiente ducimus? Ipsam, quisquam?</li>
+			<li>Amet non quasi quo beatae quod sequi dolor harum at commodi cum odio, accusamus dolorem a totam error sit laudantium nostrum soluta inventore quaerat, reiciendis deserunt eos, aut. Enim, aliquid?</li>
+			<li>Molestias ut perferendis velit ipsa, architecto repudiandae eius aut dolorum recusandae! Inventore exercitationem quod, modi ipsum consequuntur excepturi eius quasi saepe nulla corrupti, enim id beatae quo in aliquam vel!</li>
+			<li>Harum, cupiditate. Dicta odit nisi tempore velit veniam molestiae eligendi soluta. Amet repudiandae aut, impedit delectus, quam voluptas natus sapiente quo in voluptatibus saepe voluptate facere nesciunt perspiciatis. Temporibus, rem?</li>
+			<li>Assumenda deserunt neque perferendis quam dolor, nemo voluptatum reprehenderit quia error cum quaerat deleniti dolores veniam totam fuga voluptatem consequuntur, fugit modi laboriosam itaque. Ipsa quisquam pariatur ratione fuga tenetur!</li>
+			<li>Dolores reprehenderit amet, deleniti quo odio harum laudantium aliquid repellendus officiis atque eligendi qui odit sapiente aut voluptas, quia magni quibusdam, non tempora est quas. Qui fugiat, obcaecati nisi aliquid.</li>
+			<li>Perferendis nulla eaque cupiditate suscipit corporis, magnam velit architecto natus perspiciatis repellendus assumenda repellat ducimus eveniet accusantium dolorum placeat, nihil voluptates minima, in eum dicta. Ea, assumenda accusamus minima modi.</li>
+			<li>Molestiae, libero. Vero mollitia officiis, modi quod neque earum quisquam molestias voluptas voluptates magnam aut hic quis praesentium accusantium, saepe deleniti quidem temporibus nemo, autem ipsa! Ut sapiente, voluptates expedita.</li>
+			<li>Voluptas harum laborum, quasi mollitia rerum explicabo quo at quisquam est veniam, vitae expedita neque, modi, laboriosam totam reprehenderit. Nesciunt fuga odio fugiat ut eos beatae quo perspiciatis aliquam reprehenderit!</li>
+			<li>Quia ipsa consequuntur facilis eos quasi vero, officiis consectetur aliquam necessitatibus rerum est nisi culpa placeat asperiores mollitia, reiciendis id tenetur. A explicabo, quod libero nostrum vero dolorum assumenda autem?</li>
+			<li>Expedita iusto quod iste ab nulla assumenda doloremque sequi aspernatur consectetur veniam temporibus necessitatibus fuga accusamus doloribus eum incidunt dolore accusantium, obcaecati dolorem fugit. Nobis doloribus libero veniam excepturi minus.</li>
+			<li>Deserunt veritatis, incidunt aliquid placeat exercitationem fugiat repellendus qui dolor iure nam, a hic similique velit repudiandae eaque suscipit perspiciatis, alias ducimus nobis, quia distinctio illo quasi voluptates earum consectetur.</li>
+			<li>Adipisci, cumque, earum quis omnis consectetur, aliquam debitis enim voluptas sunt aperiam illum. Voluptate odio sed sequi similique facere, rerum consequuntur recusandae possimus eum dolores quam autem totam fuga fugit.</li>
+			<li>Animi atque alias tempora, eaque id modi dolore quo itaque. Esse officiis ullam voluptates et saepe obcaecati rem impedit dolorum nobis quasi repellendus quaerat dolores dolor, tempore tempora, provident nam.</li>
+			<li>Expedita eaque minus sint velit mollitia deserunt doloremque magni tenetur maxime est ea, quidem saepe incidunt nam, ipsum, eos, dolorum consequatur! Odit eos facilis eius commodi cupiditate. Hic, unde assumenda.</li>
+			<li>Voluptates explicabo sint iusto illum delectus quaerat eaque. Quod dolor maxime repellat reiciendis et quibusdam praesentium enim aliquam numquam illo, pariatur non, necessitatibus delectus veritatis minima tempore animi, ipsum accusamus!</li>
+			<li>Deserunt tempora ea eius quas sunt ab qui ipsum maxime at obcaecati dignissimos adipisci vero, quibusdam possimus est eligendi esse atque nisi? Architecto ex neque explicabo officiis cumque doloremque doloribus!</li>
+			<li>Aliquid nesciunt possimus maiores ad mollitia nostrum cupiditate sunt harum veritatis amet, quidem esse deserunt totam dolorem quaerat quis reiciendis? Beatae, ducimus, praesentium. Sit fugit, odit distinctio in quaerat eligendi!</li>
+			<li>Harum reiciendis eligendi dolorem, similique, minus ad quaerat ducimus accusamus magnam ipsa! Pariatur, magnam, dolor. Repellat quibusdam repudiandae voluptatem necessitatibus, sint reiciendis consectetur incidunt, assumenda, fugiat maxime molestiae voluptatum, praesentium!</li>
+			<li>Omnis itaque praesentium vel neque, dolorem sed, ratione voluptas nisi, asperiores eius pariatur fugit, maxime quidem. Iusto voluptas quae, necessitatibus, quisquam adipisci deserunt ea voluptatum libero minus veritatis recusandae provident!</li>
+			<li>Sit natus fuga deleniti dolores necessitatibus quas. Cum blanditiis a nemo atque nulla dolorum mollitia, vitae veniam fugiat asperiores ex suscipit minus aut. Consectetur quas maxime aliquam corrupti id quibusdam?</li>
+			<li>Laboriosam officia harum distinctio neque a, eum tempore nemo earum architecto consequuntur amet accusamus, qui eius dolorem ratione assumenda ducimus quasi quibusdam natus, incidunt voluptatem? Dolor libero doloremque aliquid quo.</li>
+			<li>Sequi nesciunt repudiandae nemo. Quis voluptas, reprehenderit a at placeat itaque sapiente nihil eos, aperiam in maiores minus nostrum dolore rem totam laudantium debitis quaerat ea velit. Molestias dolorum, blanditiis.</li>
+			<li>Veritatis asperiores a aperiam sequi porro perferendis architecto ducimus atque saepe deserunt, ex in temporibus illum quos iure est quis numquam earum, possimus at vero, fugit distinctio? Quibusdam, adipisci, iste!</li>
+			<li>Ex, illum, accusamus. Facilis, nihil nesciunt? Soluta eos sed tempora! Ipsam quis amet hic eaque, facilis! Veniam iure asperiores, laudantium itaque provident ab repudiandae perferendis vero. Ipsum iure natus, repellat!</li>
+			<li>Repellendus molestias, ea vel aperiam illo incidunt, fuga earum consequatur. Expedita ad reprehenderit suscipit tempora soluta blanditiis ipsam, autem commodi, vel. Assumenda et, reiciendis cupiditate? Dolorum tempora, error veritatis possimus.</li>
+			<li>Consectetur cupiditate, magnam ab dolorem culpa, perferendis rem similique accusamus repudiandae maiores fuga doloremque minus eaque adipisci aspernatur soluta at eligendi assumenda officiis mollitia dignissimos obcaecati magni! Dicta, voluptas iusto.</li>
+			<li>Maxime ad repellendus ab rem eveniet quaerat minus ratione totam distinctio magnam reiciendis quidem at voluptates aperiam, mollitia dolore illum, inventore, necessitatibus veritatis ipsa! Provident modi quaerat cum, blanditiis eum!</li>
+			<li>Ratione temporibus quaerat porro dicta rerum, exercitationem, molestias eligendi sunt minus, repudiandae, eveniet animi odio error. Rem delectus, eveniet, ipsam expedita animi fugit iste iure, omnis reprehenderit earum distinctio ullam!</li>
+			<li>Placeat quis et, inventore dolorum! Laudantium doloribus neque aut laboriosam repellat, illum quam impedit, fuga obcaecati dicta quas eius reprehenderit quidem. Ad officia unde deserunt quam tempora velit ipsa repudiandae!</li>
+			<li>Expedita veritatis, temporibus quia enim. Natus soluta dolorum officia quaerat error facilis quibusdam, nihil ipsum alias accusamus non sed consectetur, nostrum autem hic tenetur illum. Consectetur fugiat veritatis, quod ipsa.</li>
+			<li>Consequatur deleniti repellat delectus officia tempore provident aliquid illum voluptates voluptas in quas perspiciatis magnam unde aspernatur necessitatibus ipsum atque esse molestias excepturi pariatur quam enim non, ad. Vitae, qui.</li>
+			<li>Excepturi obcaecati facere autem voluptatum dolorum amet veritatis dicta ex ullam aliquid, eius magnam quas maiores iusto in quam rerum quasi repudiandae veniam accusamus sapiente? Non, qui dolore odit consequuntur.</li>
+			<li>Esse a, molestiae soluta rerum porro, dicta ducimus aspernatur consequuntur accusantium, obcaecati eum tempora, quos aliquid voluptas aut officia vel animi mollitia corporis. Labore quasi natus neque, numquam alias dicta.</li>
+			<li>Earum voluptatum odit laborum aliquam, maiores facilis id corporis iure harum reiciendis voluptatem repellendus, impedit non. Odit facilis blanditiis iste cumque voluptate minima eum culpa incidunt ab! Natus, hic distinctio.</li>
+			<li>Nostrum ipsum consectetur, temporibus. Inventore aut molestiae repellendus a, dolore, unde esse quas, quos doloribus quam laborum quidem quod numquam, explicabo ut iste voluptatum earum laudantium corrupti cupiditate! Minima, vitae.</li>
+			<li>Eos eaque molestias non laborum officia, in minus, rem sit maxime, nemo explicabo! Commodi modi nihil quas, inventore quia placeat sequi provident, doloremque consequuntur excepturi dolores ipsa quos adipisci repudiandae.</li>
+			<li>Quos, porro ut eaque sint perferendis, temporibus non rem minima, in exercitationem, saepe culpa ea placeat cumque reiciendis dolor? Labore deleniti laudantium voluptatibus ducimus id ex autem adipisci reiciendis vel.</li>
+			<li>Enim voluptas sed sequi at atque expedita consequatur excepturi dolore nam quaerat vitae rem fugiat exercitationem similique voluptatibus doloribus blanditiis quibusdam totam, quidem, earum voluptatem! Minus, distinctio eaque eum aut!</li>
+			<li>Explicabo, repellat quas accusantium. Aut ducimus possimus, enim dolores labore perferendis, unde voluptatem praesentium fugiat fugit cum veniam laudantium quod saepe, adipisci, minus culpa tempora nesciunt in similique. Asperiores, ipsam!</li>
+			<li>Repudiandae animi, perferendis! Sint facere aliquam fuga eveniet reiciendis, nam minima quibusdam fugiat recusandae, voluptatum distinctio sapiente veritatis omnis, delectus asperiores! Rerum maiores praesentium itaque dolores aperiam provident nesciunt aliquid!</li>
+			<li>Atque reiciendis deleniti, sit sequi et. Quidem, quis modi nulla quo impedit assumenda? Optio assumenda asperiores expedita atque quod nulla quibusdam quae, sint error eveniet qui sunt enim vero blanditiis.</li>
+			<li>Similique, in quia modi et, error repudiandae quibusdam reprehenderit dolore deleniti, iste unde asperiores voluptates est consequatur mollitia expedita. Ipsa distinctio at fugiat recusandae similique! Asperiores, quidem id eveniet ad?</li>
+			<li>Quae esse adipisci quas nulla excepturi dolores voluptatibus porro. Recusandae dolor voluptate magni, excepturi tempora mollitia? Dolore officiis, at. Consequuntur assumenda doloremque autem ad explicabo beatae, eum sunt, odio alias.</li>
+			<li>Animi nesciunt explicabo, officia, laboriosam eius ratione fugit, quam illum quasi sint sequi. Magni sunt accusamus mollitia perspiciatis sit cupiditate nostrum quis, quos, sint quae nam laudantium explicabo eos nobis.</li>
+			<li>Sapiente a minima beatae, animi nisi quidem, veniam tenetur, velit quis quisquam, doloremque magni accusantium autem cumque minus cum. Eum, numquam ducimus accusantium reiciendis, enim perspiciatis quae quibusdam magnam iste.</li>
+			<li>Maiores animi, dolorum laboriosam necessitatibus praesentium illo debitis numquam libero magnam voluptate commodi quia, nihil unde? Dolorum at harum dignissimos quis iusto ipsam maxime reiciendis unde nesciunt ea! Veritatis, sequi.</li>
+			<li>Dolores autem, nostrum possimus rem aut ipsam, dicta sint ipsa animi, odit porro deserunt quos eius vero nemo recusandae magnam libero totam asperiores tenetur laboriosam. Beatae, veniam soluta ab molestias.</li>
+			<li>Repudiandae, quo. Error ea modi adipisci alias voluptatum aspernatur vel perspiciatis nisi, maxime quisquam, dicta velit. Veritatis tempora enim fuga, eligendi nesciunt perspiciatis velit deserunt unde? Quia cum, qui pariatur.</li>
+			<li>Libero et asperiores sint quaerat tempora ea quibusdam optio dicta eligendi corporis, quas, error reiciendis obcaecati provident voluptatum, ipsa voluptatem? Reiciendis voluptatem perspiciatis dicta blanditiis sequi iusto ea enim in!</li>
+			<li>Ab itaque, at illum ad expedita voluptates nobis excepturi quo dolor dolorum, eveniet quis dicta libero, iste ipsum cum alias. Odio, officia quaerat repellat, deleniti praesentium aliquam enim iusto ut.</li>
+			<li>Tempora sint minus laudantium quasi provident eos ad expedita at, unde minima repellendus nostrum voluptatem possimus voluptatibus. Dolor quisquam non illo fuga, sapiente rem explicabo vero omnis consectetur doloribus molestiae.</li>
+			<li>Unde quia nam accusamus nesciunt nemo? Sunt sed necessitatibus nemo laudantium quod voluptate autem eaque porro odio in nulla, officia cumque perferendis, enim. Quidem ad nulla, excepturi illum optio provident.</li>
+			<li>Nulla quia laudantium labore inventore dolor doloremque nobis, numquam consequatur rerum! Tenetur quasi nostrum nesciunt velit doloremque, atque fugiat accusantium temporibus necessitatibus illum autem consequuntur eligendi omnis totam, voluptate quod.</li>
+			<li>Illum quae sunt voluptatum, excepturi expedita iste, accusantium rem, distinctio totam porro autem. Mollitia a ab quisquam velit sunt ullam, eligendi, consequatur, delectus deserunt culpa veritatis? Aliquam sequi nisi, odio.</li>
+			<li>Et libero, animi ratione, magnam magni voluptates optio. Tempore labore, nisi totam sint itaque numquam ipsam praesentium dolor tenetur iure commodi sit delectus dolore sequi aspernatur est incidunt aliquid aperiam.</li>
+		</ul>
+	</div>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>shape-outside</h2>
+</section>
+
+<section>
+	<h3>shape-outside</h3>
+	<p>Specify a shape which an elements content should wrap around</p>
+	<ul>
+		<li>Takes a <code>&lt;basic-shape&gt;</code> as a value, such as <code>ellipse(), circle(), polygon()</code> etc.</li>
+		<li>Some basic transitions are possible with this property</li>
+		<li>You can even use a png image, the browser will extract a shape from it based on transparency</li>
+	</ul>
+</section>
+
+<style>
+.slide-shape-outside .shape-outside-demo {
+	float: left;
+	shape-outside: ellipse(233px 67px at 25% 54%);
+	width: 600px;
+	height: 200px;
+}
+
+.slide-shape-outside .shape-outside-demo + p {
+	font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+</style>
+
+<section class="slide-shape-outside">
+	<div>
+			<div class="shape-outside-demo"></div>
+			<p>		Thanks Cat Ipsum...Russian blue hola te quiero and drink water out of the faucet yet paw at beetle and eat it before it gets away. Hide when guests come over meow all night having their mate disturbing sleeping humans but sit on the laptop. Chirp at birds. Purr while eating put butt in owner's face yet sleep on keyboard meow for food, then when human fills food dish, take a few bites of food and continue meowing for damn that dog sit on human knock over christmas tree. Dream about hunting birds leave hair everywhere, and climb a tree, wait for a fireman jump to fireman then scratch his face but chase after silly colored fish toys around the house or stretch. Intrigued by the shower. Asdflkjaertvlkjasntvkjn (sits on keyboard) stares at human while pushing stuff off a table throwup on your pillow scratch the furniture. Ignore the squirrels, you'll never catch them anyway. Plan steps for world domination sun bathe stare at the wall, play with food and get confused by dust lick arm hair. Favor packaging over toy scratch at the door then walk away yet fall over dead (not really but gets sypathy) cat is love, cat is life. Refuse to leave cardboard box purr while eating but chase laser and all of a sudden cat goes crazy,
+		</p>
+	</div>
+</section>
+
+<section class="slide-alphabet-title">
+	<h2>will-change</h2>
+</section>
+
+<style>
+.slide-will-change .slide-own-layer {
+	will-change: transform;
+	outline: 1px solid grey;
+	color: green;
+	background: white;
+	padding: 4px;
+}
+</style>
+
+<section class="slide-will-change">
+	<h3>will-change</h3>
+	<p>Hint to the browser that a change is coming on an element</p>
+	<ul>
+		<li>e.g. <code>will-change: transform</code></li>
+		<li>Element may promote to its own <a target="_blank" href="http://umaar.github.io/devtools-nov-2013/slides/#27">layer</a></li>
+		<li class="slide-own-layer">A portion of the page uploaded to the GPU for compositing</li>
+	</ul>
+</section>
+
+<section>
+	<p><a href="https://twitter.com/umaar">@umaar</a></p>
+	<p><a href="https:/umaar.com/dev-tips/">umaar.com/dev-tips</a></p>
+</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				history: true,
+				controls: false,
+				transition: 'none',
+				backgroundTransition: 'none',
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
